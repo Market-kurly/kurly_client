@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import React from "react";
 
 const Image = (props) => {
-    const {width, src, height, _onClick} = props;
+    const {margin, width, src, height, _onClick} = props;
 
     const styles = {
         src: src,
         width: width,
         height: height,
+        margin: margin
     }
 
     return(
@@ -21,7 +22,8 @@ Image.defaultProps ={
     src: "",
     width: "100px",
     height: "100px",
-    _onClick : ()=>{}
+    _onClick : ()=>{},
+    margin: false,
 }
 
 const ImageDefault = styled.div`
@@ -29,5 +31,6 @@ const ImageDefault = styled.div`
     height: ${(props)=> (props.height)};
     background-image: url("${(props) => props.src}");
     background-size: cover;
+    ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 export default Image;

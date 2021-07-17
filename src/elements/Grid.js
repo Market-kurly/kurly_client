@@ -3,7 +3,7 @@ import styled  from "styled-components";
 
 
 const Grid = (props) =>{
-    const{width, height, padding, margin, border, display, bgcolor, children, alignitem, 
+    const{position, float, width, height, padding, margin, border, display, bgcolor, children, alignitem, 
     justify, textalign, _onClick} = props;
 
     const styles ={
@@ -17,6 +17,8 @@ const Grid = (props) =>{
         alignitem: alignitem,
         justify: justify,
         textalign: textalign,
+        float:float,
+        position: position
 
     }
     return(
@@ -41,6 +43,8 @@ Grid.defaultProps = {
     justify: false,
     textalign : false,
     _onClick: () => {},
+    float : false,
+    position: false,
    
 }
 
@@ -55,6 +59,9 @@ const GridBox = styled.div`
     ${(props) => (props.alignitem ? `align-items: ${props.alignitem};` : "")}
     ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
     ${(props) => (props.textalign ? `text-align: ${props.textalign};` : "")}
+    ${(props) => (props.float ? `float: ${props.float};` : "")}
+    ${(props) => (props.position ? `position: ${props.position};` : "")}
     box-sizing: border-box;
+    font-family: noto sans;
 `;
 export default Grid;
