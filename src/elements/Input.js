@@ -66,6 +66,9 @@ const ElInput = styled.input`
 
 
 `;
-const Label = styled.label``;
+
+const Label = styled.label`
+
+`;
 
 export default Input;
