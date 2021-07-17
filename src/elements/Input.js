@@ -51,6 +51,9 @@ const ElInput = styled.input`
     border: 1px solid #333333;
   }
 `;
-const Label = styled.label``;
+
+const Label = styled.label`
+
+`;
 
 export default Input;
