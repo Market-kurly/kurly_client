@@ -13,8 +13,8 @@ function App() {
       <ConnectedRouter history={history}>
         <Header/>
         <Route path="/" exact ></Route>
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
+        <Route path="/pages/login" exact component={Login} />
+        <Route path="/pages/signup" exact component={Signup} />
       </ConnectedRouter>
     </React.Fragment>
   );

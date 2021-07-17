@@ -52,8 +52,6 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-     
-
       <SignBox>
         <Sign>회원가입</Sign>
         <MustContents>
@@ -137,7 +135,6 @@ const Signup = (props) => {
           <SignButton onClick={signup}>가입하기</SignButton>
         </ButtonBox>
       </SignBox>
-    
     </React.Fragment>
   );
 };
@@ -223,9 +220,9 @@ const SignButton = styled.button`
   color: #fff;
   font-weight: 70;
   border-radius: 3px;
-  /* &: hover {
-        cursor : pointer;
-    } */
+  & a:hover {
+    cursor: pointer;
+  }
 `;
 const ButtonBox = styled.div`
   text-align: center;

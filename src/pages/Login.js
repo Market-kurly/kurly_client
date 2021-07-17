@@ -42,7 +42,7 @@ const Login = (props) => {
           <Text size="13px">보안접속</Text>
           <Grid>
             <FindIdPw>
-              <li>아이디찾기</li>
+              <li>아이디 찾기</li>
               <li>비밀번호 찾기</li>
             </FindIdPw>
           </Grid>
@@ -60,7 +60,7 @@ const Login = (props) => {
           bg="#ffffff"
           color="#5f0080"
           _onClick={() => {
-            history.push("/signup");
+            history.push("/pages/signup");
           }}
         >
           회원가입
