@@ -11,13 +11,13 @@ const Header = (props) => {
 
   const userName = localStorage.getItem("userName");
 
-  const has_token = localStorage.getItem("X-AUTH-TOKEN");
+  const has_token = localStorage.getItem("Bearer");
 
   function logout() {
     fetch("http://15.165.205.40/api/carts/products", {
       method: "PUT",
       headers: {
-        "X-AUTH-TOKEN": localStorage.getItem("X-AUTH-TOKEN"),
+        "Bearer": localStorage.getItem("Bearer"),
         // 저희 조 백엔드 분들과 정한 토큰 이름입니다! fetch의 headers에 넣어서 보내기로 해서,
         // 로그인시 받은 토큰을 서버로 보내 사용자 인증을 합니다!
         "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const Header = (props) => {
             <Image
               height="36px"
               width="36px"
-              src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"
+              src="https://hyunjung.s3.ap-northeast-2.amazonaws.com/pngwing.com.png"
             ></Image>
           </Grid>
           <Grid width="36px" padding="9px">

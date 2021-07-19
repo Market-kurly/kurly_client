@@ -14,7 +14,7 @@ const initialState = {
 
 const signupAPI = (id, pw, userName, email, address) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://dmsql5303.shop/api/v1/signup";
+    const API = "http://3.35.219.219/api//signup";
     fetch(API, {
       method: "POST",
       headers: {

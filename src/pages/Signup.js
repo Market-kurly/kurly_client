@@ -26,7 +26,7 @@ const Signup = (props) => {
   };
   function check() {
     // 아이디 중복체크를 위한 함수입니다.
-    fetch("http://15.165.205.40/api/signup/checkid", {
+    fetch("http://3.35.219.219/api/signup/checkid", {
       method: "POST",
       body: JSON.stringify({
         username: id,
