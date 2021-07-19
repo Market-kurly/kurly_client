@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Detail from "../pages/Detail";
 import Header from "../components/Header";
+import CartPage from "../pages/CartPage";
 
 function App() {
   return (
