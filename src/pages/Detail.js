@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 import {Grid, Image, Text, Button} from "../elements"
 import CountNum from "../components/CountNum";
+import styled from "styled-components";
 
 const Detail = (props) =>{
     // const dispatch = useDispatch();
@@ -10,18 +11,38 @@ const Detail = (props) =>{
     // const product = useSelector(state=> state.product.product);
 
     const [purchaseNum, setPurchaseNum] = React.useState(1);
- 
+    const [popup, setPopup] = React.useState(false);
     // React.useEffect(()=>{
     //     dispatch(productActions.getOneProductSV(product_id));
     // },[]);
+
+    
 
 
     const {productImg, productName, price, amount, unit, delivery, packing, expiryDate, country, infromation, keeping} = props;
     let totalPrice = price * purchaseNum;
     return (
         <React.Fragment>
+
+            {
+                popup && 
+                    <Balloon>
+                        <Grid margin="15px" display="flex">
+                            <Image height="90px" width="70px"src={productImg}></Image>
+                            <Grid padding="7px 20px">
+                            <Text margin="10px 0px"size="16px" weight="bold" color="#666">{productName}</Text>
+                            <Text  size="16px"  weight="bold">장바구니에 상품을 담았습니다.</Text>
+                            </Grid>
+
+                        </Grid>
+                     
+                        
+                        </Balloon>
+                
+            }
+            
             <Grid display="flex" width="1050px" padding="20px 0px" margin="0 auto">
-                <Image width="430px" height="552px" src="https://i.pinimg.com/564x/8e/ed/4a/8eed4a1da55068fa84d3512991f78c69.jpg"></Image>
+                <Image width="430px" height="552px" src={productImg}></Image>
                 <Grid  width="620px" float="right">
                     <Grid  padding="0px 60px" >
                     <Grid padding="0px 0px 29px">
@@ -84,8 +105,15 @@ const Detail = (props) =>{
                              background_color="#5f0080"
                              border_radius="3px" 
                              border="0px"
+                             _onClick={()=>{
+                                 setPopup(true);
+                                 setTimeout(function(){ setPopup(false); }, 1000);
+                               
+                               
+                             }}
                              >장바구니 담기</Button>
                         </Grid>
+                       
                     </Grid>
                     </Grid>
                    
@@ -96,7 +124,7 @@ const Detail = (props) =>{
 }
 
 Detail.defaultProps = {
-    productImg : "default",
+    productImg : "https://i.pinimg.com/564x/8e/ed/4a/8eed4a1da55068fa84d3512991f78c69.jpg",
     productName : "default",
     price : "2000",
     amount : "default",
@@ -109,6 +137,28 @@ Detail.defaultProps = {
     keeping: "default",
 }
 
+const Balloon = styled.div`
+position:absolute;
+margin: 50px;
+width:400px;
+height:120px;
+border: 1px solid #d5d5d5;
+background: white;
+z-index: 100;
+top: 125px;
+right: 370px;
+ 
+ &:after {
+    border-top:0px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #d5d5d5;
+    content:"";
+    position:absolute;
+    top:-10px;
+    right:30px;
+ }
+`;
 
 
 export default Detail;
