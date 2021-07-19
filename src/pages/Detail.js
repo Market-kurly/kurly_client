@@ -1,7 +1,34 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as productActions } from "../redux/modules/product";
 import {Grid, Image, Text, Button} from "../elements"
 
 const Detail = (props) =>{
+    // const dispatch = useDispatch();
+    // const product_id = props.match.params.id;
+    // const product = useSelector(state=> state.product.product);
+
+
+
+    // React.useEffect(()=>{
+    //     dispatch(productActions.getOneProductSV(product_id));
+    // },[]);
+
+
+    const {productImg, productName, price, amount, unit, delivery, packing, expiryDate, country, infromation, keeping} = props;
+    // {
+//     "productImg":"imgUrl",
+//     "productName":"상품 이름",
+//     "price":"22000",
+//     "amount" : "250g",
+//     "unit" : "1봉",
+//     "delivery" : "새벽배송",
+//     "packing" : "상온/종이포장",
+//     "expiryDate": "수령일 포함 최소 125일",
+//     "country":"원산지",
+//     "information":"안내사항",
+//     "keeping":"냉동상품"
+//     }
     return (
         <React.Fragment>
             <Grid display="flex" width="1050px" padding="20px 0px" margin="0 auto">
@@ -9,37 +36,37 @@ const Detail = (props) =>{
                 <Grid  width="620px" float="right">
                     <Grid  padding="0px 60px" >
                     <Grid padding="0px 0px 29px">
-                        <Text margin="20px 0px 0px 0px"size="24px">친환경 실파 200g</Text>
-                        <Text margin="4px 60px 0px 0px" color="#999" padding="4px 60px 0 0">부드러운 식감과 은은한 향이 좋은 실파 (200g/1봉)</Text>
+                        <Text margin="20px 0px 0px 0px"size="24px">{productName}</Text>
+                        <Text margin="4px 60px 0px 0px" color="#999" padding="4px 60px 0 0">{infromation}</Text>
                     </Grid>
                     <Grid>
-                        <Text margin="0px" size="28px">2690원</Text>
+                        <Text margin="0px" size="28px">{price}</Text>
                         <Text margin="0px"padding="7px 0px "color="#5f0080">로그인후, 적립혜택이 제공됩니다.</Text>
                     </Grid>
                     <Grid>
                         <Grid margin="0px"display="flex"padding="18px 0px 0px 0px" >
                             <Text width="150px"margin="0px" color="#666">판매단위</Text>
-                            <Text margin="0px">1박스</Text>
+                            <Text margin="0px">{unit}</Text>
                         </Grid>
                         <Grid margin="0px" display="flex" padding="18px 0px ">
                            <Text width="150px" margin="0px" color="#666">중량/용량</Text>
-                           <Text margin="0px">144g</Text>
+                           <Text margin="0px">{amount}</Text>
                         </Grid>
                         <Grid margin="0px" display="flex" padding="18px 0px"> 
                             <Text width="150px" margin="0px" color="#666">배송구분</Text>
-                            <Text margin="0px">샛별배송.택배배송</Text>
+                            <Text margin="0px">{delivery}</Text>
                         </Grid>
                         <Grid display="flex" padding="18px 0px ">
                           <Text width="150px" margin="0px"  color="#666">포장타입</Text>
-                          <Text margin="0px" >상온/종이포장</Text>
+                          <Text margin="0px" >{packing}</Text>
                         </Grid>
                         <Grid display="flex" padding="18px 0px">
                           <Text width="150px" margin="0px"  color="#666">원산지</Text>
-                          <Text margin="0px" >국내산</Text>
+                          <Text margin="0px" >{country}</Text>
                         </Grid>
                         <Grid display="flex" padding="18px 0px">
                             <Text width="150px" margin="0px" color="#666">유통기한</Text>
-                            <Text margin="0px">수령일 포함 최소 125일</Text>
+                            <Text margin="0px">{expiryDate}</Text>
                         </Grid>
                         <Grid display="flex" padding="18px 0px">
                             <Text width="150px"margin="0px"color="#666">구매수량</Text>
@@ -76,6 +103,21 @@ const Detail = (props) =>{
         </React.Fragment>
     )
 }
+
+Detail.defaultProps = {
+    productImg : "default",
+    productName : "default",
+    price : "default",
+    amount : "default",
+    unit: "default",
+    delivery : "default",
+    packing : "default",
+    expiryDate : "default",
+    country : "default",
+    infromation : "default",
+    keeping: "default",
+}
+
 
 
 export default Detail;

@@ -12,34 +12,34 @@ const Header = (props) =>{
                   <Text size="12px" padding="0px 13px 0px 0px">고객센터</Text>
               </Grid>
             </Grid>
-            <Grid width="1050px" margin="0 auto" >
+            <Grid width="1050px" margin="0 auto"  >
                 <Grid >
                     <Image margin="0 auto" width="103px" height="79px" src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"></Image>
                 </Grid>
             </Grid>
 
-            <Grid  width="1050px" height="56px" margin="0 auto"> 
+            <Grid  width="1050px" height="56px" margin="0 auto" > 
                 <Grid float="left" display="flex">
                     <Grid width="16px" padding="15px" margin="0px 10px">
                         <Image width="16px" height="14px" margin="5px 14px 0px 0px"src="https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off.png"></Image>
                     </Grid>
                   
-                    <Grid width="168px">
+                    <Grid width="168px"  padding="16px 0px">
                         <Text size="16px" weight="700">전체 카테고리</Text>
                     </Grid>
-                    <Grid width="124px">
+                    <Grid width="124px" padding="16px 0px">
                         <Text size="16px" weight="700">신상품</Text>
                     </Grid>
-                    <Grid width="116px">
+                    <Grid width="116px" padding="16px 0px">
                         <Text size="16px" weight="700">베스트</Text>
                     </Grid>
-                    <Grid width="124px">
+                    <Grid width="124px" padding="16px 0px">
                      <Text size="16px" weight="700">알뜰쇼핑</Text>
                     </Grid>
-                    <Grid width="116px">
+                    <Grid width="116px" padding="16px 0px">
                       <Text size="16px" weight="700">특가/혜택</Text>
                     </Grid>
-                    <Grid width="242px" padding="4px">
+                    <Grid width="242px" padding="7px 4px">
                         <Input height="36px" border="1px solid #f7f7f6"
                         border_radius="18px" bgcolor="#f7f7f7"placeholder="건강기원 새해맞이 보양식 레시피"
                         fontsize="12px"
