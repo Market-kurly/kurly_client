@@ -58,6 +58,7 @@ Cart.defaultProps = {
 
 
 }
+<<<<<<< HEAD
 
 const BtnCheck = styled.button`
     width: 24px;
@@ -112,3 +113,6 @@ background-size: 30px 30px;
 background-position: 50% 50%;
 `;
 export default Cart;
+=======
+export default Cart;
+>>>>>>> 99a5265 (카트에서 데이터 가져오기(임시))

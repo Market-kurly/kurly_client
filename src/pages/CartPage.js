@@ -2,7 +2,12 @@ import React from "react";
 import { Grid, Input, Button, Image ,Text} from "../elements";
 import CartList from "../components/CartList";
 import Delivery from "../components/Delivery";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as productActions } from "../redux/modules/product";
+
 const CartPage = (props) =>{
+
+   
     return(
         <React.Fragment>
             <Grid width="1050px" margin="0 auto"  >
