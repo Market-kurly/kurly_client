@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import Main from "../pages/Main";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Header from "../components/Header";
@@ -12,7 +13,7 @@ function App() {
     <React.Fragment>
       <ConnectedRouter history={history}>
         <Header/>
-        <Route path="/" exact ></Route>
+        <Route eaxct path="/" component={Main}/>
         <Route path="/pages/login" exact component={Login} />
         <Route path="/pages/signup" exact component={Signup} />
       </ConnectedRouter>

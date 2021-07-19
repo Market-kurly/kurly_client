@@ -142,7 +142,8 @@ const Signup = (props) => {
 const SignBox = styled.div`
   width: 640px;
   position: relative;
-  margin: 0px auto;
+  margin: auto;
+  padding: 90px 0px 120px 0px;
 `;
 const Sign = styled.h3`
   font-size: 30px;

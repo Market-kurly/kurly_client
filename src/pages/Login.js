@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Input, Text, Grid, Button } from "../elements";
+
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+
 const Login = (props) => {
   const [id, setId] = React.useState("");
   const [pw, setPw] = React.useState("");
@@ -21,16 +23,14 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <LoginBox>
-        <Text size="20px" bold margin="0px 0px 30px 0px">
-          로그인
-        </Text>
-        <Input
+        <Log>로그인</Log>
+        <ElInput
           placeholder="아이디를 입력해주세요"
           _onChange={(e) => {
             setId(e.target.value);
           }}
         />
-        <Input
+        <ElInput
           placeholder="비밀번호를 입력해주세요"
           type="password"
           margin="10px 0px"
@@ -38,37 +38,43 @@ const Login = (props) => {
             setPw(e.target.value);
           }}
         />
-        <Grid flex width="340px" margin="-15px 0px 0px 0px">
-          <Text size="13px">보안접속</Text>
+        <Grid flex width="300px" margin="-10px 0px 0px 0px">
           <Grid>
             <FindIdPw>
-              <li>아이디 찾기</li>
-              <li>비밀번호 찾기</li>
+              <p>아이디 찾기</p>
+              <p>|</p>
+              <p>비밀번호 찾기</p>
             </FindIdPw>
           </Grid>
         </Grid>
-        <Button
-          margin="17px 0px 0px 0px"
-          _onClick={() => {
-            login(id, pw);
-          }}
+        <LoginButton
+          _onClick={()=>{login()}}
         >
           로그인
-        </Button>
-        <Button
-          margin="10px"
-          bg="#ffffff"
-          color="#5f0080"
+        </LoginButton>
+        <SignupButton
           _onClick={() => {
             history.push("/pages/signup");
           }}
         >
           회원가입
-        </Button>
+        </SignupButton>
       </LoginBox>
     </React.Fragment>
   );
 };
+
+const ElInput = styled.input`
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  text-indent: 10px;
+  margin: 10px 0px 0px 0px;
+`;
+const Log = styled.h3`
+  font-size: 30px;
+  text-align: center;
+`;
 
 const LoginBox = styled.div`
   width: 340px;
@@ -82,7 +88,8 @@ const LoginBox = styled.div`
 const FindIdPw = styled.ul`
   font-size: 13px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
+  float: right;
 
   & li:nth-child(1)::after {
     content: "|";
@@ -91,6 +98,35 @@ const FindIdPw = styled.ul`
     margin-left: 5px;
     position: relative;
     top: -2px;
+  }
+`;
+
+const LoginButton = styled.button`
+  width: 340px;
+  height: 50px;
+  font-size: 16px;
+  border: 1px solid #5f0081;
+  background-color: #5f0080;
+  color: #ffffff;
+  font-weight: 100;
+  border-radius: 3px;
+  & a:hover {
+    cursor: pointer;
+  }
+`;
+
+const SignupButton = styled.button`
+  width: 340px;
+  margin-top: 10px;
+  height: 50px;
+  font-size: 16px;
+  border: 1px solid #5f0081;
+  background-color: white;
+  color: black;
+  font-weight: 100;
+  border-radius: 3px;
+  & a:hover {
+    cursor: pointer;
   }
 `;
 
