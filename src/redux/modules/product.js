@@ -120,10 +120,12 @@ export default handleActions (
             }
         })
 
-    }
+    },
+    initialState
 );
 
 const actionCreators = {
+  
     getProductSV,
     getOneProductSV,
     getCartSV,

@@ -6,7 +6,7 @@ const Header = (props) =>{
     return(
         <React.Fragment>
             <Grid width="1050px" margin="0 auto" height="37px" >
-              <Grid width="auto" display="flex" float="right" height="37px">
+              <Grid width="auto" display="flex" float="right" height="37px" padding="20px 0px">
                   <Text size="12px" color="#5f0080" padding="0px 11px 0px 0px">회원가입</Text>
                   <Text size="12px" padding="0px 16px 0px 15px">로그인</Text>
                   <Text size="12px" padding="0px 13px 0px 0px">고객센터</Text>
