@@ -62,6 +62,6 @@ const GridBox = styled.div`
     ${(props) => (props.float ? `float: ${props.float};` : "")}
     ${(props) => (props.position ? `position: ${props.position};` : "")}
     box-sizing: border-box;
-    font-family: noto sans;
+    font-family: 'Noto Sans', sans-serif;
 `;
 export default Grid;
