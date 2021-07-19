@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Text, Image , Input} from "../elements";
+import { history } from "../redux/configureStore";
 
 
 const Header = (props) =>{
@@ -14,7 +15,9 @@ const Header = (props) =>{
             </Grid>
             <Grid width="1050px" margin="0 auto"  >
                 <Grid >
-                    <Image margin="0 auto" width="103px" height="79px" src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"></Image>
+                    <Image _onClick={()=>{
+                        history.push('/');
+                    }}margin="0 auto" width="103px" height="79px" src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"></Image>
                 </Grid>
             </Grid>
 
@@ -49,7 +52,9 @@ const Header = (props) =>{
                         <Image height="36px" width="36px"src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"></Image>
                     </Grid>
                     <Grid width="36px" padding="9px">
-                        <Image height="36px" width="36px"src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"></Image>
+                        <Image _onClick={()=>{
+                            history.push('/cart');
+                        }} height="36px" width="36px"src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"></Image>
                     </Grid>
                 </Grid>
             </Grid>
