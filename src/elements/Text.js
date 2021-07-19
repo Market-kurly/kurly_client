@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Text= (props) =>{
 
-    const {margin, padding, children, size, weight, color, _onClick} = props;
+    const {lineHeight, width,margin, padding, children, size, weight, color, _onClick} = props;
 
     const styles = {
         size: size,
@@ -11,6 +11,9 @@ const Text= (props) =>{
         color: color,
         margin: margin,
         padding: padding,
+        width:width,
+        lineHeight:lineHeight
+      
     }
     return(
         <React.Fragment>
@@ -21,20 +24,27 @@ const Text= (props) =>{
 
 Text.defaultProps = {
     children : null,
-    size : false,
+    size : "14px",
     weight: false,
     color: "",
     _onClick : ()=>{},
-    margin: false,
+    margin: "0px",
     padding: false,
+    width: "",
+    lineHeight:false,
+   
 }
 
 const P = styled.p`
-    ${(props) => (props.size ? `font-size: ${props.size};` : "")}
+    display: block;
+    font-size: ${(props)=> (props.size)};  
+    margin: ${(props)=> (props.margin)};  
+    ${(props) => (props.width ? `width: ${props.width};` : "")}
     ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")}
     ${(props) => (props.color ? `color: ${props.color};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-
+    ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")}
+  
 `;
 export default Text;

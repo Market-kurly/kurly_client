@@ -1,8 +1,8 @@
 import React from "react";
-import { Grid, Text, Image, Input } from "../elements";
+import { Grid, Text, Image , Input} from "../elements";
+import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
-import { history } from "../redux/configureStore";
 import { useSelector } from "react-redux";
 import { getLocal, setLocal, deleteLocal } from "../shared/Cookie";
 
@@ -122,27 +122,27 @@ const Header = (props) => {
             ></Image>
           </Grid>
 
-          <Grid width="168px">
+          <Grid width="168px" margin="20px 0px 0px 0px">
             <Text size="16px" weight="700">
               전체 카테고리
             </Text>
           </Grid>
-          <Grid width="124px">
+          <Grid width="124px" margin="20px 0px 0px 0px">
             <Text size="16px" weight="700">
               신상품
             </Text>
           </Grid>
-          <Grid width="116px">
+          <Grid width="116px" margin="20px 0px 0px 0px">
             <Text size="16px" weight="700">
               베스트
             </Text>
           </Grid>
-          <Grid width="124px">
+          <Grid width="124px" margin="20px 0px 0px 0px">
             <Text size="16px" weight="700">
               알뜰쇼핑
             </Text>
           </Grid>
-          <Grid width="116px">
+          <Grid width="116px" margin="20px 0px 0px 0px">
             <Text size="16px" weight="700">
               특가/혜택
             </Text>
