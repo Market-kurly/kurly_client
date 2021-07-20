@@ -21,7 +21,7 @@ const Main = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  
+
   const dispatch = useDispatch();
   const product_list = useSelector((state) => state.product.product_list);
 
@@ -82,20 +82,6 @@ const SubTitle = styled.div`
   font-size: 1.8em;
   font-weight: bold;
   padding: 79px 0 35px;
-`;
-
-const Grid2 = styled.div`
-  display: flex;
-  border: 0.1em outset #d3d3d3;
-  flex-direction: column;
-  margin: 20px auto;
-  width: 100%;
-  color: black;
-  background-color: #ffffff;
-  height: auto;
-  border-radius: 20px;
-  border: none;
-  box-shadow: 5px 5px #e5e5e3;
 `;
 
 export default Main;
