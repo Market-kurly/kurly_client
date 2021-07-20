@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Text, Image , Input} from "../elements";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
+import { Badge } from '@material-ui/core';
 
 import { useSelector } from "react-redux";
 import { getLocal, setLocal, deleteLocal } from "../shared/Cookie";
@@ -180,12 +181,15 @@ const Header = (props) => {
             ></Image>
           </Grid>
           <Grid width="36px" padding="9px">
-            <Image
+          <Badge badgeContent={4} color="secondary">
+          <Image
               height="36px"
               width="36px"
               src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"
               _onClick={()=>{history.push('/cart')}}
             ></Image>
+          </Badge>
+          
           </Grid>
         </Grid>
       </Grid>
