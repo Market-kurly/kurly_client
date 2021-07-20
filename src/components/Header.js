@@ -153,7 +153,7 @@ const Header = (props) => {
           <Grid width="242px" padding="4px">
             <Input
               height="36px"
-              border="1px solid #f7f7f6"
+              border="none"
               border_radius="18px"
               bgcolor="#f7f7f7"
               placeholder="건강기원 새해맞이 보양식 레시피"

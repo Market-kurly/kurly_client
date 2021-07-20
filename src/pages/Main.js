@@ -22,6 +22,19 @@ const Main = (props) => {
     slidesToScroll: 1,
   };
 
+  const products = {
+    className: "center",
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 4,
+    swipeToSlide: true,
+    afterChange: function (index) {
+      console.log(
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+      );
+    },
+  };
+
   const dispatch = useDispatch();
   const product_list = useSelector((state) => state.product.product_list);
 
@@ -44,30 +57,30 @@ const Main = (props) => {
           </div>
         </Slider>
         <SubTitle>이 상품 어때요?</SubTitle>
-     
-      <GridBox>
-        {
-          product_list.map((p) =>{
-            return(
-              <Product  key={p.productId} {...p}></Product>
-            )
-          })
-        }
-      </GridBox>
-    </div>
+        
+          <Slider {...products}>
+            {/* <GridBox display="flex"> */}
+              {product_list.map((p) => {
+                return (
+                  <Product {...p}>
+                  </Product>
+                );
+              })}
+            {/* </GridBox> */}
+          </Slider>
+          
+        </div>
     </React.Fragment>
-    
   );
 };
 
 const GridBox = styled.div`
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns : repeat(4, 1fr);
-  max-width: 1050px;
-
+  margin: 0 auto; */
+  display: flex;
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* max-width: 1050px; */
 `;
 
 const IMG = styled.img`
@@ -75,7 +88,7 @@ const IMG = styled.img`
 `;
 
 const SubTitle = styled.div`
-  margin-top: 70px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

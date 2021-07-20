@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 const Input = (props) => {
-  const { color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, type, width, margin, padding, _onClick } =
+  const { color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, type, width, margin, padding, _onClick, border } =
     props;
 
   const styles = {
@@ -9,6 +9,7 @@ const Input = (props) => {
     margin: margin,
     padding: padding,
     height: height,
+    border: border,
     border_radius: border_radius,
     bgcolor: bgcolor,
     fontsize: fontsize,
@@ -38,7 +39,6 @@ Input.defaultProps = {
   height: false,
   margin: false,
   padding: false,
-  border:"1px solid #ccc",
   border_radius:"3px",
   bgcolor: false,
   fontsize: false,
@@ -67,8 +67,5 @@ const ElInput = styled.input`
 
 `;
 
-const Label = styled.label`
-
-`;
 
 export default Input;

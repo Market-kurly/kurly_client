@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
+import DaumPostcode from 'react-daum-postcode';
 
 const Signup = (props) => {
   const dispatch = useDispatch();
