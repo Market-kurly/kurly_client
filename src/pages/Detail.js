@@ -136,15 +136,15 @@ Detail.defaultProps = {
 }
 
 const Balloon = styled.div`
-position:absolute;
+position:fixed;
 margin: 50px;
 width:400px;
 height:120px;
 border: 1px solid #d5d5d5;
 background: white;
 z-index: 100;
-top: 125px;
-right: 370px;
+top: 10px;
+right: 140px;
  
  &:after {
     border-top:0px solid transparent;

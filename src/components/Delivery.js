@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Text, Button } from "../elements";
+import { history } from "../redux/configureStore";
 
 const Delivery = (props) =>{
     return(
@@ -43,6 +44,9 @@ const Delivery = (props) =>{
                     <Button border="none" width="284px" height="56px" border_radius="3px"
                     font_color="white" background_color="#5f0080"
                     fontsize="16px"
+                    _onClick={()=>{
+                        history.push('/order')
+                    }}
                     >주문하기</Button>
                 </Grid>
             </Grid>

@@ -10,6 +10,7 @@ import Detail from "../pages/Detail";
 import Header from "../components/Header";
 import CartPage from "../pages/CartPage";
 import Order from "../pages/Order";
+import SearchItem from "../pages/SearchItem";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/pages/signup" component={Signup} />
         <Route path="/cart" exact component={CartPage} />
         <Route path="/order" exact component={Order}></Route>
+        <Route path="/search/:word" exact component={SearchItem}></Route>
        
         
 

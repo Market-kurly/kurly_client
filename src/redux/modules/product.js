@@ -31,7 +31,7 @@ const getProductSV = ()=>{
    return function(dispatch) {
        instance.get('/main')
        .then(res=>{
-           console.log(res.data);
+         
            dispatch(getProducts(res.data));
        })
        .catch(err=> console.log(err));
