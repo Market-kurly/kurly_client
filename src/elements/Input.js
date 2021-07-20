@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 const Input = (props) => {
-  const { color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, type, width, margin, padding, _onClick, border } =
+  const { color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, onSubmit, type, width, margin, padding, _onClick, border } =
     props;
 
   const styles = {

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-import { Grid, Text, Image, Input } from "../elements";
-=======
 import React, { useState } from "react";
 import { Grid, Text, Image , Input} from "../elements";
->>>>>>> 2c7d08de9890302f75c635060ded719d34f3eea4
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
