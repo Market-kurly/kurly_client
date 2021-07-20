@@ -23,16 +23,14 @@ const Main = (props) => {
   };
 
   const products = {
-    className: "center",
+    dots: true,
     infinite: true,
-    centerPadding: "60px",
     slidesToShow: 4,
-    swipeToSlide: true,
-    afterChange: function (index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
-    },
+    slidesToScroll: 4,
+    autoplay: true,
+    speed: 3000,
+    autoplaySpeed: 3000,
+    cssEase: "linear"
   };
 
   const dispatch = useDispatch();
@@ -57,18 +55,17 @@ const Main = (props) => {
           </div>
         </Slider>
         <SubTitle>이 상품 어때요?</SubTitle>
-        
-          <Slider {...products}>
+        <div style={{alignItems:"center" , justifyItems:"center"}}>
             {/* <GridBox display="flex"> */}
+              <Slider {...products}>
               {product_list.map((p) => {
                 return (
                   <Product {...p}>
                   </Product>
                 );
-              })}
+              })}</Slider>
             {/* </GridBox> */}
-          </Slider>
-          
+          </div>
         </div>
     </React.Fragment>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import DaumPostcode from 'react-daum-postcode';
+import Post from "../components/Post";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -11,6 +11,7 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [check_pwd, setCheckPwd] = React.useState("");
   const [name, setName] = React.useState("");
+  const [phonenumber, setNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
   const signup = () => {
     if (
@@ -18,7 +19,8 @@ const Signup = (props) => {
       pwd === "" ||
       check_pwd === "" ||
       name === "" ||
-      address === ""
+      address === "" ||
+      phonenumber === ""
     ) {
       window.alert("위의 내용들을 모두 입력해주세요!");
       return;
@@ -32,9 +34,10 @@ const Signup = (props) => {
     // signupDB에 회원가입 시 입력한 id, pwd, name을 보내줍니다.
     console.log(name);
   };
+
   function check() {
     // 아이디 중복체크를 위한 함수입니다.
-    fetch("http://3.35.219.219/api/signup/checkid", {
+    fetch("http://3.35.219.219/user/regist", {
       method: "POST",
       body: JSON.stringify({
         username: id,
@@ -55,7 +58,7 @@ const Signup = (props) => {
           window.alert(res.msg);
         }
       });
-    console.log(123);
+    console.log(1);
   }
 
   return (
@@ -139,17 +142,28 @@ const Signup = (props) => {
           <Tbody>
             <LineBox>
               <FirstContents>
-                주소<Ico>*</Ico>
+                휴대폰<Ico>*</Ico>
               </FirstContents>
               <InputBox>
                 <InPut
-                  label="주소"
-                  placeholder="주소를 입력해주세요."
+                  label="휴대폰"
+                  placeholder="숫자만 입력해주세요."
                   onChange={(e) => {
-                    setAddress(e.target.value);
+                    setNumber(e.target.value);
                   }}
                 ></InPut>
               </InputBox>
+            </LineBox>
+          </Tbody>
+          <Tbody>
+            <LineBox>
+              <FirstContents>
+                주소<Ico>*</Ico>
+              </FirstContents>
+              <span>
+                <CheckBox2 onclick="">🔍︎ 주소 검색</CheckBox2>
+              </span>
+              {/* <Post></Post> */}
             </LineBox>
           </Tbody>
         </Table>
@@ -234,14 +248,14 @@ const CheckBox2 = styled.a`
   background-color: #fff;
   color: #5f0080;
   display: inline-block;
-  width: 69%;
+  width: 70%;
   height: 44px;
   font-size: 14px;
   text-align: center;
   border-radius: 3px;
   font-weight: 700;
   line-height: 40px;
-  margin-left: 5px;
+  margin-top: 20px;
   vertical-align: top;
 `;
 const BR = styled.hr`
