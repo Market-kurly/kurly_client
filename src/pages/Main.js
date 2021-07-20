@@ -21,12 +21,12 @@ const Main = (props) => {
     slidesToScroll: 1,
   };
 
-  const dispatch = useDispatch();
-  const product_list = useSelector((state) => state.list.product_list);
+  // const dispatch = useDispatch();
+  // const product_list = useSelector((state) => state.list.product_list);
 
-  useEffect(() => {
-    dispatch(listActions.getProductsDB());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(listActions.getProductsDB());
+  // }, []);
 
   return (
     <div>
@@ -42,7 +42,7 @@ const Main = (props) => {
         </div>
       </Slider>
       <SubTitle>이 상품 어때요?</SubTitle>
-      <DIV>
+      {/* <DIV>
         {product_list.map((product, index) => (
           <Grid2
             key={product.productId}
@@ -74,7 +74,7 @@ const Main = (props) => {
             </p>
           </Grid2>
         ))}
-      </DIV>
+      </DIV> */}
     </div>
   );
 };

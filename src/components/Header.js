@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Text, Image , Input} from "../elements";
+import { Grid, Text, Image, Input } from "../elements";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
@@ -17,7 +17,7 @@ const Header = (props) => {
     fetch("http://3.35.219.219/api/carts/products", {
       method: "PUT",
       headers: {
-        "Bearer": localStorage.getItem("Bearer"),
+        Bearer: localStorage.getItem("Bearer"),
         // 저희 조 백엔드 분들과 정한 토큰 이름입니다! fetch의 headers에 넣어서 보내기로 해서,
         // 로그인시 받은 토큰을 서버로 보내 사용자 인증을 합니다!
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const Header = (props) => {
   }
 
   if (has_token) {
-    // 서버에서 로그인 시 준 X-AUTH-TOKEN의 유무로 헤더를 분기하여 로그인 했을 때와 하지 않았을 때를 구분지어 보여주는 조건문입니다.
+    // 서버에서 로그인 시 준 Bearer의 유무로 헤더를 분기하여 로그인 했을 때와 하지 않았을 때를 구분지어 보여주는 조건문입니다.
     return (
       <React.Fragment>
         <Grid width="1035px" height="160px" margin="auto">
@@ -103,6 +103,9 @@ const Header = (props) => {
       <Grid width="1050px" margin="0 auto">
         <Grid>
           <Image
+            _onClick={() => {
+              history.push("/");
+            }}
             margin="0 auto"
             width="103px"
             height="79px"

@@ -10,8 +10,15 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [check_pwd, setCheckPwd] = React.useState("");
   const [name, setName] = React.useState("");
+  const [address, setAddress] = React.useState("");
   const signup = () => {
-    if (id === "" || pwd === "" || check_pwd === "" || name === "") {
+    if (
+      id === "" ||
+      pwd === "" ||
+      check_pwd === "" ||
+      name === "" ||
+      address === ""
+    ) {
       window.alert("위의 내용들을 모두 입력해주세요!");
       return;
     }
@@ -20,7 +27,7 @@ const Signup = (props) => {
       return;
       // 회원가입 시 사용자들의 입력이 올바르지 않을 시 alert를 띄워 줍니다.
     }
-    dispatch(userActions.signupDB(id, pwd, name));
+    dispatch(userActions.signupDB(id, pwd, name, address));
     // signupDB에 회원가입 시 입력한 id, pwd, name을 보내줍니다.
     console.log(name);
   };
@@ -119,11 +126,26 @@ const Signup = (props) => {
               </FirstContents>
               <InputBox>
                 <InPut
-                  type="text"
                   label="이름"
                   placeholder="이름을 입력해주세요."
                   onChange={(e) => {
                     setName(e.target.value);
+                  }}
+                ></InPut>
+              </InputBox>
+            </LineBox>
+          </Tbody>
+          <Tbody>
+            <LineBox>
+              <FirstContents>
+                주소<Ico>*</Ico>
+              </FirstContents>
+              <InputBox>
+                <InPut
+                  label="주소"
+                  placeholder="주소를 입력해주세요."
+                  onChange={(e) => {
+                    setAddress(e.target.value);
                   }}
                 ></InPut>
               </InputBox>
@@ -197,6 +219,21 @@ const CheckBox = styled.a`
   color: #5f0080;
   display: inline-block;
   width: 120px;
+  height: 44px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-left: 5px;
+  vertical-align: top;
+`;
+const CheckBox2 = styled.a`
+  border: 1px solid #5f0080;
+  background-color: #fff;
+  color: #5f0080;
+  display: inline-block;
+  width: 69%;
   height: 44px;
   font-size: 14px;
   text-align: center;
