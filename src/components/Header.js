@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from "react";
 import { Grid, Text, Image, Input } from "../elements";
+=======
+import React, { useState } from "react";
+import { Grid, Text, Image , Input} from "../elements";
+>>>>>>> 2c7d08de9890302f75c635060ded719d34f3eea4
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
@@ -7,12 +12,15 @@ import { useSelector } from "react-redux";
 import { getLocal, setLocal, deleteLocal } from "../shared/Cookie";
 
 const Header = (props) => {
+
   const is_login = localStorage.getItem("is_login");
 
   const userName = localStorage.getItem("userName");
 
   const has_token = localStorage.getItem("Bearer");
 
+  const [search, setSearch] = useState('');
+  
   function logout() {
     fetch("http://3.35.219.219/api/carts/products", {
       method: "PUT",
@@ -158,6 +166,12 @@ const Header = (props) => {
               bgcolor="#f7f7f7"
               placeholder="건강기원 새해맞이 보양식 레시피"
               fontsize="12px"
+              _onChange={(e)=>{
+                setSearch(e.target.value);
+            }}
+            onSubmit={
+              ()=>{ history.push('/cart')}
+            }
             ></Input>
           </Grid>
           <Grid width="36px" padding="9px" margin="0px 10px">

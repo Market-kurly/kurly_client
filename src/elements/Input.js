@@ -24,6 +24,11 @@ const Input = (props) => {
         placeholder={placeholder}
         onClick={_onClick}
         onChange={_onChange}
+        onKeyPress ={(e)=>{
+          if(e.key === "Enter"){
+            onSubmit(e);
+          }
+        }}
       />
     </React.Fragment>
   );
@@ -42,7 +47,8 @@ Input.defaultProps = {
   border_radius:"3px",
   bgcolor: false,
   fontsize: false,
-  color:"#666"
+  color:"#666",
+  onSubmit:()=>{}
 
 };
 

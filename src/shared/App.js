@@ -9,6 +9,7 @@ import Signup from "../pages/Signup";
 import Detail from "../pages/Detail";
 import Header from "../components/Header";
 import CartPage from "../pages/CartPage";
+import Order from "../pages/Order";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
       <ConnectedRouter history={history}>
         <Header/>
         <Route path="/" exact component={Main}></Route>
-        {/* <Route path="/detail" exact component={Detail}></Route> */}
         <Route path="/detail/:id" exact component={Detail}></Route>
         <Route path="/pages/login" component={Login} />
         <Route path="/pages/signup" component={Signup} />
         <Route path="/cart" exact component={CartPage} />
+        <Route path="/order" exact component={Order}></Route>
+       
         
 
       </ConnectedRouter>
