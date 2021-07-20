@@ -21,63 +21,7 @@ const Main = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
-<<<<<<< HEAD
-  // const dispatch = useDispatch();
-  // const product_list = useSelector((state) => state.list.product_list);
-
-  // useEffect(() => {
-  //   dispatch(listActions.getProductsDB());
-  // }, []);
-
-  return (
-    <div>
-      <Slider {...settings}>
-        <div>
-          <IMG src={kurly_1} alt={kurly_1} />
-        </div>
-        <div>
-          <IMG src={kurly_2} alt={kurly_2} />
-        </div>
-        <div>
-          <IMG src={kurly_3} alt={kurly_3} />
-        </div>
-      </Slider>
-      <SubTitle>이 상품 어때요?</SubTitle>
-      {/* <DIV>
-        {product_list.map((product, index) => (
-          <Grid2
-            key={product.productId}
-            onClick={() => {
-              history.push(`/${product.productId}`);
-            }}
-          >
-            <img
-              style={{
-                width: "100%",
-                height: "200px",
-                borderRadius: "20px 20px 0 0",
-              }}
-              src={
-                product.productImgList &&
-                product.productImgList[0]?.productImgUrl
-              }
-              alt="product"
-            ></img>
-            <H3>{product.productName}</H3>
-            <p
-              style={{
-                fontWeight: "bold",
-                fontSize: "17px",
-                margin: "10px auto",
-              }}
-            >
-              {product.price}
-            </p>
-          </Grid2>
-        ))}
-      </DIV> */}
-=======
+  
   const dispatch = useDispatch();
   const product_list = useSelector((state) => state.product.product_list);
 
@@ -110,7 +54,6 @@ const Main = (props) => {
           })
         }
       </GridBox>
->>>>>>> b2d2f949ad5b903258c1afff7dba55ba69da1dc7
     </div>
     </React.Fragment>
     
