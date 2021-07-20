@@ -77,7 +77,7 @@ const BtnCheck = styled.button`
     box-sizing: border-box;
     margin: 0 30px 0 0;
     padding: 0;
-    &: hover {
+    & a:hover {
     cursor : pointer;
     }   
 `;
