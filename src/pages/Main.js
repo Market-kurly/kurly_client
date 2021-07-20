@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 
@@ -9,8 +9,8 @@ import kurly_2 from "../image/kurly2.png";
 import kurly_3 from "../image/kurly3.png";
 
 import { history } from "../redux/configureStore";
-import { useDispatch, useSelector, useEffect } from "react-redux";
-import { actionCreators as mainlistActions } from "../redux/modules/mainlist";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as listActions } from "../redux/modules/mainlist";
 
 const Main = (props) => {
   const settings = {
@@ -21,13 +21,12 @@ const Main = (props) => {
     slidesToScroll: 1,
   };
 
-//   const dispatch = useDispatch();
-//   const product_list = useSelector((state) => state.list.product_list);
+  const dispatch = useDispatch();
+  const product_list = useSelector((state) => state.list.product_list);
 
-// //   useEffect(() => {
-// //     dispatch(userActions.loginCheckDB());
-// //     dispatch(listActions.getProductsDB());
-// //   }, []);
+  useEffect(() => {
+    dispatch(listActions.getProductsDB());
+  }, []);
 
   return (
     <div>
@@ -43,11 +42,52 @@ const Main = (props) => {
         </div>
       </Slider>
       <SubTitle>이 상품 어때요?</SubTitle>
-      
+      <DIV>
+        {product_list.map((product, index) => (
+          <Grid2
+            key={product.productId}
+            onClick={() => {
+              history.push(`/${product.productId}`);
+            }}
+          >
+            <img
+              style={{
+                width: "100%",
+                height: "200px",
+                borderRadius: "20px 20px 0 0",
+              }}
+              src={
+                product.productImgList &&
+                product.productImgList[0]?.productImgUrl
+              }
+              alt="product"
+            ></img>
+            <H3>{product.productName}</H3>
+            <p
+              style={{
+                fontWeight: "bold",
+                fontSize: "17px",
+                margin: "10px auto",
+              }}
+            >
+              {product.price}
+            </p>
+          </Grid2>
+        ))}
+      </DIV>
     </div>
-    
   );
 };
+
+const DIV = styled.div`
+  padding: 10px;
+  margin: auto;
+`;
+
+const H3 = styled.h3`
+  margin: 10px auto;
+  text-align: center;
+`;
 
 const IMG = styled.img`
   width: 100%;
@@ -60,6 +100,20 @@ const SubTitle = styled.div`
   justify-content: center;
   font-size: 1.8em;
   font-weight: bold;
+`;
+
+const Grid2 = styled.div`
+  display: flex;
+  border: 0.1em outset #d3d3d3;
+  flex-direction: column;
+  margin: 20px auto;
+  width: 100%;
+  color: black;
+  background-color: #ffffff;
+  height: auto;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 5px 5px #e5e5e3;
 `;
 
 export default Main;

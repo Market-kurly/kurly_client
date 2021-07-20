@@ -14,7 +14,7 @@ const Header = (props) => {
   const has_token = localStorage.getItem("Bearer");
 
   function logout() {
-    fetch("http://15.165.205.40/api/carts/products", {
+    fetch("http://3.35.219.219/api/carts/products", {
       method: "PUT",
       headers: {
         "Bearer": localStorage.getItem("Bearer"),
