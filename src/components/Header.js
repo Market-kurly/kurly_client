@@ -155,6 +155,7 @@ const Header = (props) => {
           </Grid>
           <Grid width="242px" padding="4px">
             <Input
+            value={search}
               height="36px"
               border="none"
               border_radius="18px"
@@ -165,7 +166,9 @@ const Header = (props) => {
                 setSearch(e.target.value);
             }}
             onSubmit={
-              ()=>{ history.push('/cart')}
+              ()=>{    history.push(`/search/${search}`); 
+              setSearch("");
+            }
             }
             ></Input>
           </Grid>
@@ -181,6 +184,7 @@ const Header = (props) => {
               height="36px"
               width="36px"
               src="https://res.kurly.com/pc/service/common/2011/ico_cart.svg"
+              _onClick={()=>{history.push('/cart')}}
             ></Image>
           </Grid>
         </Grid>

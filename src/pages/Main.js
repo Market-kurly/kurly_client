@@ -60,7 +60,7 @@ const Main = (props) => {
               <Slider {...products}>
               {product_list.map((p) => {
                 return (
-                  <Product {...p}>
+                  <Product key={p.productId} {...p}>
                   </Product>
                 );
               })}</Slider>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text, Button , Image} from "../elements";
 import OrderProduct from "../components/OrderProduct";
+import { history } from "../redux/configureStore";
 
 
 const Order = (props) =>{
@@ -163,7 +164,12 @@ const Order = (props) =>{
                 border="none"
                 border_radius="3px"
                 fontsize="16px"
-                width="240px" height="56px">결제하기</Button>
+                width="240px" height="56px"
+                _onClick={()=>{
+                    window.alert("결제 되었습니다.")
+                    history.push('/')
+                }}
+                >결제하기</Button>
                 </Grid>
 
 
