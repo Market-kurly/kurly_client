@@ -96,7 +96,7 @@ background-size: 30px 30px;
 background-position: 50% 50%;
 font-size: 0;
 text-indent: -9999px;
-${(props) => (props.fold?  "": `rotate: 180deg;`)}
+${(props) => (props.fold?  "": `  transform: rotate(180deg);`)}
 `;
 
 const BtnDelete = styled.button`

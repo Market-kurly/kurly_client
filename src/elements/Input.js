@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 const Input = (props) => {
-  const { color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, type, width, margin, padding, _onClick } =
+  const { onSubmit, color,fontsize,bgcolor, border_radius, height, placeholder, _onChange, type, width, margin, padding, _onClick } =
     props;
 
   const styles = {
@@ -23,6 +23,11 @@ const Input = (props) => {
         placeholder={placeholder}
         onClick={_onClick}
         onChange={_onChange}
+        onKeyPress ={(e)=>{
+          if(e.key === "Enter"){
+            onSubmit(e);
+          }
+        }}
       />
     </React.Fragment>
   );
@@ -42,7 +47,8 @@ Input.defaultProps = {
   border_radius:"3px",
   bgcolor: false,
   fontsize: false,
-  color:"#666"
+  color:"#666",
+  onSubmit:()=>{}
 
 };
 
