@@ -29,8 +29,9 @@ const initialState = {
 //메인페이지에서 상품 리스트 불러오기
 const getProductSV = ()=>{
    return function(dispatch) {
-       instance.get('/')
+       instance.get('/main')
        .then(res=>{
+           console.log(res.data);
            dispatch(getProducts(res.data));
        })
        .catch(err=> console.log(err));

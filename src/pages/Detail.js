@@ -6,20 +6,21 @@ import CountNum from "../components/CountNum";
 import styled from "styled-components";
 
 const Detail = (props) =>{
-    // const dispatch = useDispatch();
-    // const product_id = props.match.params.id;
-    // const product = useSelector(state=> state.product.product);
+    
+    const dispatch = useDispatch();
+    const product_id = props.match.params.id;
+    const product = useSelector(state=> state.product.product);
 
     const [purchaseNum, setPurchaseNum] = React.useState(1);
     const [popup, setPopup] = React.useState(false);
-    // React.useEffect(()=>{
-    //     dispatch(productActions.getOneProductSV(product_id));
-    // },[]);
+    React.useEffect(()=>{
+        dispatch(productActions.getOneProductSV(product_id));
+    },[]);
 
     
 
-
-    const {productImg, productName, price, amount, unit, delivery, packing, expiryDate, country, infromation, keeping} = props;
+    console.log(product);
+    const {productImg,description,  productName, price, amount, unit, delivery, packing, expiryDate, country, information, keeping} = product;
     let totalPrice = price * purchaseNum;
     return (
         <React.Fragment>
@@ -28,7 +29,7 @@ const Detail = (props) =>{
                 popup && 
                     <Balloon>
                         <Grid margin="15px" display="flex">
-                            <Image height="90px" width="70px"src={productImg}></Image>
+                            <Image height="90px" width="70px" src={productImg}></Image>
                             <Grid padding="7px 20px">
                             <Text margin="10px 0px"size="16px" weight="bold" color="#666">{productName}</Text>
                             <Text  size="16px"  weight="bold">장바구니에 상품을 담았습니다.</Text>
@@ -41,13 +42,13 @@ const Detail = (props) =>{
                 
             }
             
-            <Grid display="flex" width="1050px" padding="20px 0px" margin="0 auto">
-                <Image width="430px" height="552px" src={productImg}></Image>
+            <Grid display="flex" width="1050px" padding="30px 0px 1000px 0px" margin="0 auto">
+                <Image width="430px" height="552px" src={productImg} ></Image>
                 <Grid  width="620px" float="right">
                     <Grid  padding="0px 60px" >
                     <Grid padding="0px 0px 29px">
                         <Text margin="20px 0px 0px 0px"size="24px">{productName}</Text>
-                        <Text margin="4px 60px 0px 0px" color="#999" padding="4px 60px 0 0">{infromation}</Text>
+                        <Text margin="4px 60px 0px 0px" color="#999" padding="4px 60px 0 0">{description}</Text>
                     </Grid>
                     <Grid>
                         <Text margin="0px" size="28px">{price}원</Text>
@@ -60,7 +61,7 @@ const Detail = (props) =>{
                         </Grid>
                         <Grid margin="0px" display="flex" padding="18px 0px ">
                            <Text width="150px" margin="0px" color="#666">중량/용량</Text>
-                           <Text margin="0px">{amount}</Text>
+                           <Text margin="0px">{amount}g</Text>
                         </Grid>
                         <Grid margin="0px" display="flex" padding="18px 0px"> 
                             <Text width="150px" margin="0px" color="#666">배송구분</Text>
@@ -74,14 +75,11 @@ const Detail = (props) =>{
                           <Text width="150px" margin="0px"  color="#666">원산지</Text>
                           <Text margin="0px" >{country}</Text>
                         </Grid>
-                        <Grid display="flex" padding="18px 0px">
-                            <Text width="150px" margin="0px" color="#666">유통기한</Text>
-                            <Text margin="0px">{expiryDate}</Text>
-                        </Grid>
+                
                         <Grid display="flex" padding="18px 0px">
                             <Text width="150px"margin="0px"color="#666">구매수량</Text>
-                            <CountNum num={purchaseNum} setNum={setPurchaseNum}></CountNum>
-                          
+                            <CountNum  num={purchaseNum} setNum={setPurchaseNum}></CountNum>
+                         
                             
                         </Grid>
                         <Grid display="flex" justify="flex-end">
