@@ -12,9 +12,9 @@ const initialState = {
   is_login: false,
 };
 
-const signupAPI = (id, pw, userName, email, address) => {
+const signupAPI = (id, pw, userName, email, phonenumber, address) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://3.35.219.219/api/signup";
+    const API = "http://3.35.219.219/user/regist";
     fetch(API, {
       method: "POST",
       headers: {
@@ -25,6 +25,7 @@ const signupAPI = (id, pw, userName, email, address) => {
         userId: id,
         password: pw,
         email: email,
+        phonenumber: phonenumber,
         address: address,
       }),
     })
@@ -47,7 +48,7 @@ const signupAPI = (id, pw, userName, email, address) => {
 
 const loginAPI = (id, pw) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://dmsql5303.shop/api/v1/login";
+    const API = "http://3.35.219.219/user";
     fetch(API, {
       method: "POST",
       headers: {
