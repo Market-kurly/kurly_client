@@ -55,7 +55,7 @@ const Main = (props) => {
           </div>
         </Slider>
         <SubTitle>이 상품 어때요?</SubTitle>
-        <div style={{alignItems:"center" , justifyItems:"center"}}>
+        <div style={{ width:"1050px",  margin:"0 auto" , alignItems:"center" , justifyItems:"center"}}>
             {/* <GridBox display="flex"> */}
               <Slider {...products}>
               {product_list.map((p) => {
