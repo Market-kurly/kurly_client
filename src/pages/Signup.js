@@ -13,6 +13,11 @@ const Signup = (props) => {
   const [name, setName] = React.useState("");
   const [phonenumber, setNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
+  console.log(address);
+
+  const [popup, setPopup] = React.useState(false);
+
+
   const signup = () => {
     if (
       id === "" ||
@@ -53,8 +58,10 @@ const Signup = (props) => {
         if (res.ok) {
           // 백엔드와 협의하여 res.ok가 true냐 false냐에 따라 다른 msg값을 보내주는데,
           // 이 값을 보여주기 위한 조건문입니다.
+          window.alert("오케이")
           window.alert(res.msg);
         } else {
+          window.alert("안오케이")
           window.alert(res.msg);
         }
       });
@@ -160,9 +167,16 @@ const Signup = (props) => {
               <FirstContents>
                 주소<Ico>*</Ico>
               </FirstContents>
-              <span>
-                <CheckBox2 onclick="">🔍︎ 주소 검색</CheckBox2>
-              </span>
+              
+                <CheckBox2 
+                onClick={()=>{
+                  setPopup(!popup)
+                }}
+                >🔍︎ 주소 검색</CheckBox2>
+               {
+                 popup && 
+                    <Post address={address} setAddress={setAddress}></Post>
+                    } 
               {/* <Post></Post> */}
             </LineBox>
           </Tbody>
@@ -228,7 +242,7 @@ const InPut = styled.input`
   background: #fff;
   vertical-align: top;
 `;
-const CheckBox = styled.a`
+const CheckBox = styled.button`
   border: 1px solid #5f0080;
   background-color: #fff;
   color: #5f0080;
@@ -243,7 +257,7 @@ const CheckBox = styled.a`
   margin-left: 5px;
   vertical-align: top;
 `;
-const CheckBox2 = styled.a`
+const CheckBox2 = styled.button`
   border: 1px solid #5f0080;
   background-color: #fff;
   color: #5f0080;
