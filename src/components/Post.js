@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
-const Post = () => {
-  const [address, setAddress] = useState(""); // 주소
-  const [addressDetail, setAddressDetail] = useState(""); // 상세주소
-
-  const [isOpenPost, setIsOpenPost] = useState(true);
-
-  const onChangeOpenPost = () => {
-    setIsOpenPost(!isOpenPost);
-  };
+const Post = (props) => {
+  const address = props.address;
+  const setAddress = props.setAddress;
 
   const onCompletePost = (data) => {
-    console.log(data);
+    console.log(data.address);
+    setAddress(data.address);
   };
 
   const postCodeStyle = {
+   
     display: "block",
-    position: "relative",
-    top: "0%",
+    position: "absolute",
+    top: "20%",
     width: "400px",
     height: "400px",
     padding: "7px",
+    zIndex: 100, 
   };
 
   return (
     <>
-      {isOpenPost ? (
+    
         <DaumPostcode
           style={postCodeStyle}
           autoClose
           onComplete={onCompletePost}
+
         />
-      ) : null}
+     
     </>
   );
 };
