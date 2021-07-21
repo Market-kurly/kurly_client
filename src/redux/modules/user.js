@@ -1,6 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
+import jwt_decode from "jwt-decode";
+import {setCookie} from "../../shared/Cookie";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -74,11 +76,16 @@ const loginAPI = (id, pw) => {
       }
     })
       .then((result) => {
-        console.log(result);
+        const decoded = jwt_decode(result.data);
+        localStorage.setItem('userId', decoded.sub);
+        setCookie('token', result.data);
+        // dispatch(setUser())
         //성공시 토큰, 유저 정보 저장
-        if (result.status === 200) {
-          console.log(result.headers.get("Authorization"))
-          console.log(result.headers.get("userInfo"))
+
+
+
+          // console.log(result.headers.get("Authorization"))
+          // console.log(result.headers.get("userInfo"))
           // let token = result.headers.get("Authorization");
           // let userInfo = result.headers.get("userInfo");
           // userInfo = JSON.parse(userInfo);
@@ -94,9 +101,7 @@ const loginAPI = (id, pw) => {
           //   })
           // );
           // history.push("/");
-        } else {
-          window.alert("로그인에 실패했습니다.");
-        }
+        
       })
       .catch((error) => {
         window.alert("로그인에 실패했습니다.");
