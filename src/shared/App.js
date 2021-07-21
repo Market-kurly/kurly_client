@@ -11,22 +11,22 @@ import Header from "../components/Header";
 import CartPage from "../pages/CartPage";
 import Order from "../pages/Order";
 import SearchItem from "../pages/SearchItem";
-import {useDispatch} from "react-redux";
-import {actionCreators as userActions} from "../redux/modules/user";
-import {getCookie} from "./Cookie";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { getCookie } from "./Cookie";
 
 function App() {
   const dispatch = useDispatch();
-  const is_token = getCookie("token")? true : false;
-  React.useEffect(()=>{
-    if(is_token){
+  const is_token = getCookie("token") ? true : false;
+  React.useEffect(() => {
+    if (is_token) {
       dispatch(userActions.loginCheck());
     }
-  },[]);
+  }, []);
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Header/>
+        <Header />
         <Route path="/" exact component={Main}></Route>
         <Route path="/detail/:id" exact component={Detail}></Route>
         <Route path="/pages/login" component={Login} />
@@ -34,9 +34,6 @@ function App() {
         <Route path="/cart" exact component={CartPage} />
         <Route path="/order" exact component={Order}></Route>
         <Route path="/search/:word" exact component={SearchItem}></Route>
-       
-        
-
       </ConnectedRouter>
     </React.Fragment>
   );
