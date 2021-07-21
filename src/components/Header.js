@@ -11,7 +11,7 @@ const Header = (props) => {
 
   const is_login = localStorage.getItem("is_login");
 
-  const userName = localStorage.getItem("userName");
+  const nickname = localStorage.getItem("nickname");
 
   const has_token = localStorage.getItem("Bearer");
 
@@ -42,19 +42,16 @@ const Header = (props) => {
       <React.Fragment>
         <Grid width="1035px" height="160px" margin="auto">
           <Grid is_flex height="33px">
-            {/* <Grid is_flex size="12px" margin="6px 0 0 0">
-                        <Border>수도권 이외 지역 <Span color="purple" bold>택배배송</Span></Border>
-                    </Grid> */}
             <Grid flex_end padding="0px 0px 0px 8px">
               <Grid flex_center bold width="70px" size="12.4px">
                 <Text hover="pointer" color="#262626" size="12.4px">
-                  {userName} 님
+                  {nickname} 님
                 </Text>
                 <Point></Point>
               </Grid>
               <Grid flex_center bold width="80px" size="12.4px">
                 <Text
-                  _onClick={logout}
+                  onClick={logout}
                   hover="pointer"
                   color="#262626"
                   size="12.4px"
@@ -73,7 +70,7 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <Grid width="1050px" margin="0 auto" height="37px">
-        <Grid width="auto" display="flex" float="right" height="37px">
+        <Grid width="auto" display="flex" float="right" height="37px" margin="13px 0px 0px 0px">
           <Text
             _onClick={() => {
               history.push("/pages/signup");
@@ -85,7 +82,7 @@ const Header = (props) => {
             color="#5f0080"
             padding="0px 11px 0px 0px"
           >
-            회원가입
+            회원가입 &nbsp; &nbsp; |
           </Text>
           <Text
             _onClick={() => {
@@ -97,7 +94,7 @@ const Header = (props) => {
             size="12.4px"
             padding="0px 11px 0px 0px"
           >
-            로그인
+            로그인 &nbsp; &nbsp; |
           </Text>
           <Text size="12px" padding="0px 13px 0px 0px">
             고객센터 ▼
@@ -110,9 +107,9 @@ const Header = (props) => {
             _onClick={() => {
               history.push("/");
             }}
-            margin="0 auto"
-            width="103px"
-            height="79px"
+            margin="0px auto"
+            width="105px"
+            height="80px"
             src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png"
           ></Image>
         </Grid>
@@ -124,7 +121,7 @@ const Header = (props) => {
             <Image
               width="16px"
               height="14px"
-              margin="5px 14px 0px 0px"
+              margin="5px 0px 0px 5px"
               src="https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off.png"
             ></Image>
           </Grid>
@@ -159,6 +156,7 @@ const Header = (props) => {
             value={search}
               height="36px"
               border="none"
+              margin="5px 0px 0px 0px"
               border_radius="18px"
               bgcolor="#f7f7f7"
               placeholder="건강기원 새해맞이 보양식 레시피"

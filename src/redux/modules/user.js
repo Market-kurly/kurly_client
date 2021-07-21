@@ -12,7 +12,15 @@ const initialState = {
   is_login: false,
 };
 
-const signupAPI = (id, pw, userName, email, phonenumber, address) => {
+const signupAPI = (
+  id,
+  pwd,
+  nickname,
+  email,
+  phonenumber,
+  address,
+  confirmPassword
+) => {
   return function (dispatch, getState, { history }) {
     const API = "http://3.35.219.219/user/regist";
     fetch(API, {
@@ -21,32 +29,31 @@ const signupAPI = (id, pw, userName, email, phonenumber, address) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName: userName,
-        userId: id,
-        password: pw,
+        userName: id,
+        password: pwd,
+        nickname: nickname,
         email: email,
         phonenumber: phonenumber,
         address: address,
+        confirmPassword: confirmPassword,
       }),
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((result) => {
         //중복체크 후 다시 중복 아이디, 이메일로 바꿨을 경우
         //대비 서버에서 한번 더 체크.
         let dupMsg = result.message;
-        if (dupMsg === "emailfalse") {
-          window.alert("이메일 중복확인을 해주세요.");
-        } else if (dupMsg === "usernamefalse") {
+        if (dupMsg === "userNamefalse") {
           window.alert("아이디 중복확인을 해주세요.");
         } else {
           window.alert("회원가입이 되었습니다!");
-          history.push("/login");
+          history.push("/pages/login");
         }
       });
   };
 };
 
-const loginAPI = (id, pw) => {
+const loginAPI = (id, pwd) => {
   return function (dispatch, getState, { history }) {
     const API = "http://3.35.219.219/user";
     fetch(API, {
@@ -55,8 +62,8 @@ const loginAPI = (id, pw) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: id,
-        password: pw,
+        userName: id,
+        password: pwd,
       }),
     })
       .then((result) => {
@@ -79,7 +86,7 @@ const loginAPI = (id, pw) => {
           );
           history.push("/");
         } else {
-          window.alert("로그인에 실패했습니다.");
+          window.alert("로그인 중 예상치 못한 문제 발생! 잠시후 다시 시도해 주세요ㅠ");
         }
       })
       .catch((error) => {

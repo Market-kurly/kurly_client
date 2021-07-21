@@ -2,31 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { Input, Text, Grid, Button } from "../elements";
 
+import { getCookie, setCookie } from "../shared/Cookie";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import { getLocal, setLocal, deleteLocal } from "../shared/Cookie";
+
 const Login = (props) => {
   const [id, setId] = React.useState("");
-  const [pw, setPw] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
   const dispatch = useDispatch();
 
-  const login = (id, pw) => {
-    if (id === "" || pw === "") {
-      alert("아이디 혹은 비밀번호 오류입니다.");
-      return false;
-    }
-
-    dispatch(userActions.loginAPI(id, pw));
+  const login = () => {
+    dispatch(userActions.loginAPI(id, pwd));
   };
-
+   
+  console.log(login);
   return (
     <React.Fragment>
       <LoginBox>
         <Log>로그인</Log>
         <ElInput
           placeholder="아이디를 입력해주세요"
-          _onChange={(e) => {
+          onChange={(e) => {
             setId(e.target.value);
           }}
         />
@@ -34,11 +33,11 @@ const Login = (props) => {
           placeholder="비밀번호를 입력해주세요"
           type="password"
           margin="10px 0px"
-          _onChange={(e) => {
-            setPw(e.target.value);
+          onChange={(e) => {
+            setPwd(e.target.value);
           }}
         />
-        <Grid flex width="300px" margin="-10px 0px 0px 0px">
+        <Grid flex width="300px" margin="-10px -40px -10px 0px">
           <Grid>
             <FindIdPw>
               <p>아이디 찾기</p>
@@ -48,12 +47,13 @@ const Login = (props) => {
           </Grid>
         </Grid>
         <LoginButton
-          _onClick={()=>{login()}}
+          onClick={login}
+          disabled={id === "" || pwd === "" ? true : false}
         >
           로그인
         </LoginButton>
         <SignupButton
-          _onClick={() => {
+          onClick={() => {
             history.push("/pages/signup");
           }}
         >
@@ -108,7 +108,7 @@ const LoginButton = styled.button`
   border: 1px solid #5f0081;
   background-color: #5f0080;
   color: #ffffff;
-  font-weight: 100;
+  font-weight: bold;
   border-radius: 3px;
   & a:hover {
     cursor: pointer;
@@ -123,7 +123,7 @@ const SignupButton = styled.button`
   border: 1px solid #5f0081;
   background-color: white;
   color: black;
-  font-weight: 100;
+  font-weight: bold;
   border-radius: 3px;
   & a:hover {
     cursor: pointer;

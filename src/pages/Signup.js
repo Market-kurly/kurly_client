@@ -17,7 +17,6 @@ const Signup = (props) => {
 
   const [popup, setPopup] = React.useState(false);
 
-
   const signup = () => {
     if (
       id === "" ||
@@ -35,17 +34,26 @@ const Signup = (props) => {
       return;
       // 회원가입 시 사용자들의 입력이 올바르지 않을 시 alert를 띄워 줍니다.
     }
-    dispatch(userActions.signupDB(id, pwd, name, phonenumber, address));
-    // signupDB에 회원가입 시 입력한 id, pwd, name을 보내줍니다.
-    console.log(name);
+    dispatch(
+      userActions.signupAPI(
+        id,
+        pwd,
+        check_pwd,
+        name,
+        "email",
+        address,
+        phonenumber
+      )
+    );
+    // console.log(name);
   };
 
   function check() {
     // 아이디 중복체크를 위한 함수입니다.
-    fetch("http://3.35.219.219/user/regist", {
+    fetch("http://3.35.219.219/user/regist/{userName}", {
       method: "POST",
       body: JSON.stringify({
-        username: id,
+        userName: id,
         // 서버에 id값만 보낼 때, 서버에서는 같은 id가 DB에 있는지를 확인합니다.
       }),
       headers: {
@@ -56,7 +64,7 @@ const Signup = (props) => {
       .then((res) => res.json())
       .then((res) => {
         if (res.ok) {
-          // 백엔드와 협의하여 res.ok가 true냐 false냐에 따라 다른 msg값을 보내주는데,
+          // res.ok가 true냐 false냐에 따라 다른 msg값을 보내주는데,
           // 이 값을 보여주기 위한 조건문입니다.
           window.alert(res);
           console.log(res);
@@ -167,17 +175,15 @@ const Signup = (props) => {
               <FirstContents>
                 주소<Ico>*</Ico>
               </FirstContents>
-              
-                <CheckBox2 
-                onClick={()=>{
-                  setPopup(!popup)
+
+              <CheckBox2
+                onClick={() => {
+                  setPopup(!popup);
                 }}
-                >🔍︎ 주소 검색</CheckBox2>
-               {
-                 popup && 
-                    <Post address={address} setAddress={setAddress}></Post>
-                    } 
-              {/* <Post></Post> */}
+              >
+                🔍︎ 주소 검색
+              </CheckBox2>
+              {popup && <Post address={address} setAddress={setAddress}></Post>}
             </LineBox>
           </Tbody>
         </Table>
@@ -285,7 +291,7 @@ const SignButton = styled.button`
   border: 1px solid #5f0081;
   background-color: #5f0080;
   color: #fff;
-  font-weight: 70;
+  font-weight: bold;
   border-radius: 3px;
   & a:hover {
     cursor: pointer;
