@@ -1,5 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import instance from "../../shared/Request";
+import jwt_decode from "jwt-decode";
+import {setCookie} from "../../shared/Cookie";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -12,84 +15,96 @@ const initialState = {
   is_login: false,
 };
 
-const signupAPI = (
-  id,
-  pwd,
-  nickname,
-  email,
-  phonenumber,
-  address,
-  confirmPassword
-) => {
+//회원가입
+const signupAPI = (userName, password, nickname, phoneNumber, address, confirmPassword) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://3.35.219.219/user/regist";
-    fetch(API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userName: id,
-        password: pwd,
-        nickname: nickname,
-        email: email,
-        phonenumber: phonenumber,
-        address: address,
-        confirmPassword: confirmPassword,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        //중복체크 후 다시 중복 아이디, 이메일로 바꿨을 경우
-        //대비 서버에서 한번 더 체크.
-        let dupMsg = result.message;
-        if (dupMsg === "userNamefalse") {
-          window.alert("아이디 중복확인을 해주세요.");
-        } else {
-          window.alert("회원가입이 되었습니다!");
-          history.push("/pages/login");
+    instance.post('/user/regist',{
+      userName: userName,
+      password: password,
+      nickname: nickname,
+      phoneNumber: phoneNumber,
+      address: address,
+      confirmPassword:confirmPassword},
+      {
+        headers: {
+          "Content-Type": "application/json",
         }
-      });
+      })
+
+      .then((res)=>{
+        window.alert("회원가입에 성공했습니다!")
+        history.push('/pages/login');
+      })
+      .catch((err)=> window.alert(err))
   };
 };
 
-const loginAPI = (id, pwd) => {
+
+
+
+//아이디중복확인
+const idCheck = (userName)=>{
+  return function(dispatch, getState, {history}){
+    instance.get("/user/regist/"+userName, {
+      userName: userName
+    })
+    .then((res)=>{
+      if(res.data){
+        window.alert("중복되는 아이디가 있습니다.");
+      }
+      else{
+        window.alert("사용할 수 있는 아이디입니다.");
+      }
+    })
+    .catch(err=> window.alert(err));
+  // 아이디 중복체크를 위한 함수입니다.
+  }
+}
+
+
+
+//로그인
+const loginAPI = (id, pw) => {
   return function (dispatch, getState, { history }) {
-    const API = "http://3.35.219.219/user";
-    fetch(API, {
-      method: "POST",
+    instance.post('/user',
+    {
+      userName: id,
+      password: pw,
+    },{
       headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userName: id,
-        password: pwd,
-      }),
+      }
     })
       .then((result) => {
-        console.log(result);
+        const decoded = jwt_decode(result.data);
+        localStorage.setItem('userId', decoded.sub);
+        setCookie('token', result.data);
+        // dispatch(setUser())
         //성공시 토큰, 유저 정보 저장
-        if (result.status === 200) {
-          let token = result.headers.get("Authorization");
-          let userInfo = result.headers.get("userInfo");
-          userInfo = JSON.parse(userInfo);
-          userInfo.name = decodeURI(atob(userInfo.name));
-          userInfo.address = decodeURI(atob(userInfo.address));
-          localStorage.setItem("token", token);
-          localStorage.setItem("userInfo", JSON.stringify(userInfo));
-          dispatch(
-            setUser({
-              uid: userInfo.uid,
-              name: userInfo.name,
-              address: userInfo.address.split("+").join(" "),
-            })
-          );
-          history.push("/");
-        } else {
-          window.alert("로그인 중 예상치 못한 문제 발생! 잠시후 다시 시도해 주세요ㅠ");
-        }
+
+
+
+          // console.log(result.headers.get("Authorization"))
+          // console.log(result.headers.get("userInfo"))
+          // let token = result.headers.get("Authorization");
+          // let userInfo = result.headers.get("userInfo");
+          // userInfo = JSON.parse(userInfo);
+          // userInfo.name = decodeURI(atob(userInfo.name));
+          // userInfo.address = decodeURI(atob(userInfo.address));
+          // localStorage.setItem("token", token);
+          // localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          // dispatch(
+          //   setUser({
+          //     uid: userInfo.uid,
+          //     name: userInfo.name,
+          //     address: userInfo.address.split("+").join(" "),
+          //   })
+          // );
+          // history.push("/");
+        
       })
       .catch((error) => {
+        window.alert("로그인에 실패했습니다.");
         console.log(error);
       });
   };
@@ -143,6 +158,7 @@ const actionCreators = {
   loginAPI,
   logout,
   isLogin,
+  idCheck,
 };
 
 export { actionCreators };

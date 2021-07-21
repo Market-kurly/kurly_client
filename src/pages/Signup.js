@@ -13,9 +13,10 @@ const Signup = (props) => {
   const [name, setName] = React.useState("");
   const [phonenumber, setNumber] = React.useState("");
   const [address, setAddress] = React.useState("");
-  console.log(address);
+ 
 
   const [popup, setPopup] = React.useState(false);
+
 
   const signup = () => {
     if (
@@ -34,47 +35,15 @@ const Signup = (props) => {
       return;
       // 회원가입 시 사용자들의 입력이 올바르지 않을 시 alert를 띄워 줍니다.
     }
-    dispatch(
-      userActions.signupAPI(
-        id,
-        pwd,
-        check_pwd,
-        name,
-        "email",
-        address,
-        phonenumber
-      )
-    );
-    // console.log(name);
+    if(pwd.length < 6 || pwd.length> 20){
+      window.alert("비밀번호를 6자리~20자리로 만들어주세요");
+      return;
+    }
+    dispatch(userActions.signupAPI(id, pwd, name, phonenumber, address, check_pwd));
+    // signupDB에 회원가입 시 입력한 id, pwd, name을 보내줍니다.
+
   };
 
-  function check() {
-    // 아이디 중복체크를 위한 함수입니다.
-    fetch("http://3.35.219.219/user/regist/{userName}", {
-      method: "POST",
-      body: JSON.stringify({
-        userName: id,
-        // 서버에 id값만 보낼 때, 서버에서는 같은 id가 DB에 있는지를 확인합니다.
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.ok) {
-          // res.ok가 true냐 false냐에 따라 다른 msg값을 보내주는데,
-          // 이 값을 보여주기 위한 조건문입니다.
-          window.alert(res);
-          console.log(res);
-        } else {
-          window.alert(res);
-          console.log(res);
-        }
-      });
-    console.log(1);
-  }
 
   return (
     <React.Fragment>
@@ -97,9 +66,12 @@ const Signup = (props) => {
                   onChange={(e) => {
                     setId(e.target.value);
                   }}
+                  value={id}
                 ></InPut>
                 <span>
-                  <CheckBox onClick={check}>중복확인</CheckBox>
+                  <CheckBox onClick={()=>{
+                    dispatch(userActions.idCheck(id));
+                  }}>중복확인</CheckBox>
                 </span>
               </InputBox>
             </LineBox>
@@ -175,21 +147,25 @@ const Signup = (props) => {
               <FirstContents>
                 주소<Ico>*</Ico>
               </FirstContents>
-
-              <CheckBox2
-                onClick={() => {
-                  setPopup(!popup);
+              
+                <CheckBox2 
+                onClick={()=>{
+                  setPopup(!popup)
                 }}
-              >
-                🔍︎ 주소 검색
-              </CheckBox2>
-              {popup && <Post address={address} setAddress={setAddress}></Post>}
+                >🔍︎ 주소 검색</CheckBox2>
+               {
+                 popup && 
+                    <Post address={address} setAddress={setAddress}></Post>
+                    } 
+              {/* <Post></Post> */}
             </LineBox>
           </Tbody>
         </Table>
         <BR />
         <ButtonBox>
-          <SignButton onClick={signup}>가입하기</SignButton>
+          <SignButton onClick={
+            ()=>{signup()}
+          }>가입하기</SignButton>
         </ButtonBox>
       </SignBox>
     </React.Fragment>
@@ -291,7 +267,7 @@ const SignButton = styled.button`
   border: 1px solid #5f0081;
   background-color: #5f0080;
   color: #fff;
-  font-weight: bold;
+  font-weight: 70;
   border-radius: 3px;
   & a:hover {
     cursor: pointer;

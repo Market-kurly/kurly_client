@@ -11,6 +11,7 @@ import kurly_3 from "../image/kurly3.png";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
+import {Grid} from "../elements"
 import Product from "../components/Product";
 
 const Main = (props) => {
@@ -68,14 +69,33 @@ const Main = (props) => {
               return <Product key={p.productId} {...p}></Product>;
             })}
           </Slider>
+           
         </div>
+        <Grid bgcolor=" rgb(247, 247, 247)">
+        <SubTitle>지금 가장 핫한 상품</SubTitle>
+      
+        <GridBox >
+              {product_list.map((p) => {
+                return (
+                  <Product key={p.productId} {...p}>
+                  </Product>
+                );
+              })}
+            </GridBox>
+        </Grid>
       </div>
     </React.Fragment>
   );
 };
 
 const GridBox = styled.div`
-  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+   max-width: 1050px;
 `;
 
 const IMG = styled.img`
