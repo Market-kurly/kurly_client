@@ -13,8 +13,8 @@ const Header = (props) => {
 
   const nickname = localStorage.getItem("nickname");
 
-  const has_token = localStorage.getItem("Bearer");
-
+  const has_token = localStorage.getItem("userId");
+console.log(has_token)
   const [search, setSearch] = useState('');
   
   function logout() {
@@ -45,7 +45,7 @@ const Header = (props) => {
             <Grid flex_end padding="0px 0px 0px 8px">
               <Grid flex_center bold width="70px" size="12.4px">
                 <Text hover="pointer" color="#262626" size="12.4px">
-                  {nickname} 님
+                  {has_token} 님
                 </Text>
                 <Point></Point>
               </Grid>

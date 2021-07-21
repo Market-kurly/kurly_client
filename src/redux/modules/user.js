@@ -11,7 +11,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 const initialState = {
-  user: null,
+  user: [],
   is_login: false,
 };
 
@@ -79,7 +79,10 @@ const loginAPI = (id, pw) => {
         const decoded = jwt_decode(result.data);
         localStorage.setItem('userId', decoded.sub);
         setCookie('token', result.data);
-        // dispatch(setUser())
+        dispatch(setUser({
+          userName : decoded.sub
+        }))
+        history.push('/')
         //성공시 토큰, 유저 정보 저장
 
 
