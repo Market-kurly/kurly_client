@@ -113,6 +113,20 @@ const loginAPI = (id, pw) => {
   };
 };
 
+const loginCheck = ()=>{
+  return function (dispatch, getState, {history}){
+    const user = localStorage.getItem("userId")? true : false;
+    if(user){
+      dispatch(setUser({
+        userName: localStorage.getItem("userId")
+      }))
+    }
+    else{
+      console.log('로그인상태아님')
+    }
+  }
+}
+
 // function logout() {
 //   fetch("http://3.35.219.219/api/carts/products", {
 //     method: "PUT",
@@ -140,23 +154,6 @@ const logout = () => {
   };
 };
 
-const isLogin = () => {
-  return function (dispatch, getState, { history }) {
-    const token = localStorage.getItem("token");
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
-    if (!token || !userInfo) {
-      return false;
-    }
-    dispatch(
-      setUser({
-        uid: userInfo.uid,
-        name: userInfo.name,
-        address: userInfo.address,
-      })
-    );
-  };
-};
 
 export default handleActions(
   {
@@ -178,8 +175,8 @@ const actionCreators = {
   signupAPI,
   loginAPI,
   logout,
-  isLogin,
-  idCheck
+  idCheck,
+  loginCheck
 };
 
 export { actionCreators };
