@@ -30,7 +30,7 @@ const Main = (props) => {
     autoplay: true,
     speed: 5000,
     autoplaySpeed: 5000,
-    cssEase: "linear"
+    cssEase: "linear",
   };
 
   const dispatch = useDispatch();
@@ -55,29 +55,27 @@ const Main = (props) => {
           </div>
         </Slider>
         <SubTitle>이 상품 어때요?</SubTitle>
-        <div style={{ width:"1050px",  margin:"0 auto" , alignItems:"center" , justifyItems:"center"}}>
-            {/* <GridBox display="flex"> */}
-              <Slider {...products}>
-              {product_list.map((p) => {
-                return (
-                  <Product key={p.productId} {...p}>
-                  </Product>
-                );
-              })}</Slider>
-            {/* </GridBox> */}
-          </div>
+        <div
+          style={{
+            width: "1050px",
+            margin: "0 auto",
+            alignItems: "center",
+            justifyItems: "center",
+          }}
+        >
+          <Slider {...products}>
+            {product_list.map((p) => {
+              return <Product key={p.productId} {...p}></Product>;
+            })}
+          </Slider>
         </div>
+      </div>
     </React.Fragment>
   );
 };
 
 const GridBox = styled.div`
-  /* justify-content: center;
-  align-items: center;
-  margin: 0 auto; */
   display: flex;
-  /* grid-template-columns: repeat(4, 1fr); */
-  /* max-width: 1050px; */
 `;
 
 const IMG = styled.img`
