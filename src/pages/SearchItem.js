@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Input, Text, Grid, Button } from "../elements";
 import styled from "styled-components";
 import Product from "../components/Product";
@@ -9,16 +9,24 @@ const SearchItem = (props) =>{
 
     // const searchWord = props.match.params.word;
     const product_list = useSelector(state=> state.product.product_list);
-    const [searchWord, setSearch] = useState( props.match.params.word);
-
-    let search_list=[];
-    product_list.forEach((p)=>{
+    const [searchWord, setSearchWord] = useState( props.match.params.word);
+    const [search, setSearch] = useState(searchWord);
+  
+  
+    function searchItems(product_list, searchWord){
+        let search_list=[];
+        product_list.forEach((p)=>{
         if(p.productName.indexOf(searchWord)===-1){
             return;
         }
         //배열에 추가
         search_list.push(p)
     })
+
+    return search_list;
+    }
+ 
+  const search_list = useMemo(() => searchItems(product_list, searchWord),[searchWord]);
 
 
     return(
@@ -35,16 +43,22 @@ const SearchItem = (props) =>{
                     padding="25px 20px 0 0 "
                     >
                         <Input 
-                             _onChange={(e)=>{
-                                setSearch(e.target.value);
-                            }}
-                        value={searchWord}
+                         _onChange={(e)=>{
+                            setSearch(e.target.value);
+                         }}
+                         onSubmit = {(e)=>{
+                            setSearchWord(e.target.value);
+                         }}
+                       
+                        value={search}
                         border_radius="0px" width="603px" height="45px"
                         margin="0 20px 0 0" padding="0 0 0 20px"
                         border="1px solid #ccc" fontsize="14px"
                         ></Input>
-                        <Button border="none"width="175px" height="45px"
+                        <Button 
+                        border="none"width="175px" height="45px"
                         background_color="#5f0080" font_color="#fff"
+                      
                         >검색하기</Button>
                     </Grid>
                 </SearchBox>
@@ -54,7 +68,6 @@ const SearchItem = (props) =>{
                     <GridBox>
                         {
                             search_list.map((p)=>{
-                                console.log(p)
                                 return(<Product key={p.productId} isSearch {...p}></Product>)
                             })
                         }

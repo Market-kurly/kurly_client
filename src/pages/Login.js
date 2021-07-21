@@ -13,7 +13,7 @@ const Login = (props) => {
 
   const login = (id, pw) => {
     if (id === "" || pw === "") {
-      alert("아이디 혹은 비밀번호 오류입니다.");
+      alert("아이디 혹은 비밀번호를 입력해주세요!");
       return false;
     }
 
@@ -26,7 +26,7 @@ const Login = (props) => {
         <Log>로그인</Log>
         <ElInput
           placeholder="아이디를 입력해주세요"
-          _onChange={(e) => {
+          onChange={(e) => {
             setId(e.target.value);
           }}
         />
@@ -34,7 +34,7 @@ const Login = (props) => {
           placeholder="비밀번호를 입력해주세요"
           type="password"
           margin="10px 0px"
-          _onChange={(e) => {
+          onChange={(e) => {
             setPw(e.target.value);
           }}
         />
@@ -48,12 +48,13 @@ const Login = (props) => {
           </Grid>
         </Grid>
         <LoginButton
-          _onClick={()=>{login()}}
+          onClick={()=>{
+            login(id,pw)}}
         >
           로그인
         </LoginButton>
         <SignupButton
-          _onClick={() => {
+          onClick={() => {
             history.push("/pages/signup");
           }}
         >
