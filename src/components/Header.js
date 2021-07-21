@@ -8,43 +8,12 @@ import { useSelector } from "react-redux";
 import { getLocal, setLocal, deleteLocal } from "../shared/Cookie";
 
 const Header = (props) => {
+  //리덕스에서 로그인 상태 받아옴
   const is_login = useSelector(state =>state.user.is_login);
   const user = useSelector(state=>state.user.user);
-
+  
   const [search, setSearch] = useState('');
   
-  
-
-  // if (is_login) {
-  //   // 서버에서 로그인 시 준 Bearer의 유무로 헤더를 분기하여 로그인 했을 때와 하지 않았을 때를 구분지어 보여주는 조건문입니다.
-  //   return (
-  //     <React.Fragment>
-  //       <Grid width="1035px" height="160px" margin="auto">
-  //         <Grid is_flex height="33px">
-  //           <Grid flex_end padding="0px 0px 0px 8px">
-  //             <Grid flex_center bold width="70px" size="12.4px">
-  //               <Text hover="pointer" color="#262626" size="12.4px">
-  //                 {user.userName} 님
-  //               </Text>
-  //               <Point></Point>
-  //             </Grid>
-  //             <Grid flex_center bold width="80px" size="12.4px">
-  //               <Text
-                 
-  //                 hover="pointer"
-  //                 color="#262626"
-  //                 size="12.4px"
-  //               >
-  //                 로그아웃
-  //               </Text>
-  //               <Point></Point>
-  //             </Grid>
-  //           </Grid>
-  //         </Grid>
-  //       </Grid>
-  //     </React.Fragment>
-  //   );
-  // }
 
   return (
     <React.Fragment>

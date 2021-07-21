@@ -11,8 +11,18 @@ import Header from "../components/Header";
 import CartPage from "../pages/CartPage";
 import Order from "../pages/Order";
 import SearchItem from "../pages/SearchItem";
+import {useDispatch} from "react-redux";
+import {actionCreators as userActions} from "../redux/modules/user";
+import {getCookie} from "./Cookie";
 
 function App() {
+  const dispatch = useDispatch();
+  const is_token = getCookie("token")? true : false;
+  React.useEffect(()=>{
+    if(is_token){
+      dispatch(userActions.loginCheck());
+    }
+  },[]);
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
