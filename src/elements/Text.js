@@ -1,40 +1,58 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text= (props) =>{
+const Text = (props) => {
+  const {
+    lineHeight,
+    width,
+    margin,
+    padding,
+    children,
+    size,
+    weight,
+    color,
+    _onClick,
+  } = props;
 
-    const {margin, padding, children, size, weight, color, _onClick} = props;
-
-    const styles = {
-        size: size,
-        weight: weight,
-        color: color,
-        margin: margin,
-        padding: padding,
-    }
-    return(
-        <React.Fragment>
-            <P {...styles} onClick={_onClick}>{children}</P>
-        </React.Fragment>
-    )
-}
+  const styles = {
+    size: size,
+    weight: weight,
+    color: color,
+    margin: margin,
+    padding: padding,
+    width: width,
+    lineHeight: lineHeight,
+  };
+  return (
+    <React.Fragment>
+      <P {...styles} onClick={_onClick}>
+        {children}
+      </P>
+    </React.Fragment>
+  );
+};
 
 Text.defaultProps = {
-    children : null,
-    size : false,
-    weight: false,
-    color: "",
-    _onClick : ()=>{},
-    margin: false,
-    padding: false,
-}
+  children: null,
+  size: "14px",
+  weight: false,
+  color: "",
+  _onClick: () => {},
+  padding: false,
+  width: "",
+  lineHeight: false,
+  margin: "0px",
+};
 
 const P = styled.p`
-    ${(props) => (props.size ? `font-size: ${props.size};` : "")}
-    ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")}
+  display: block;
+  font-size: ${(props) => props.size};
+  margin: ${(props) => props.margin};
+  ${(props) => (props.width ? `width: ${props.width};` : "")}
+  ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")}
     ${(props) => (props.color ? `color: ${props.color};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-
+    ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")}
 `;
 export default Text;
