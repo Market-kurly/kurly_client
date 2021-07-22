@@ -127,7 +127,7 @@ const Header = (props) => {
             ></Image>
           </Grid>
           <Grid width="36px" padding="9px">
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={0} color="secondary">
           <Image
               height="36px"
               width="36px"

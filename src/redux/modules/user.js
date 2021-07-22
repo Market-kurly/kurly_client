@@ -87,14 +87,18 @@ const loginAPI = (id, pw) => {
         }
       )
       .then((result) => {
-        const decoded = jwt_decode(result.data);
+        const decoded = jwt_decode(result.data.jwtToken);
+        const user = result.data.user;
         localStorage.setItem('userId', decoded.sub);
-        setCookie('token', result.data);
+        setCookie('token', result.data.jwtToken);
         dispatch(setUser({
-          userName : decoded.sub
+          userName: user.userName,
+          address: user.address,
+          phoneNumber: user.phoneNumber,
+          nickname: user.nickname,
         }))
         history.push('/')
-
+      
         
       })
       .catch((error) => {

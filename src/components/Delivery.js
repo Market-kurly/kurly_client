@@ -7,7 +7,7 @@ import { actionCreators as productActions } from "../redux/modules/product";
 const Delivery = (props) =>{
     const product_id = props.id;
     const {purchase, price} = props;
-
+    const user = useSelector(state=> state.user.user);
     const productPrice = purchase * price;
     const totalPrice = productPrice + 2500;
     return(
@@ -15,7 +15,7 @@ const Delivery = (props) =>{
             <Grid width="284px"  margin="70px 20px">
                 <Grid height="174px"padding="23px 19px 20px"  border="1px solid #f2f2f2">
                     <Text size="16px" weight="700" color="#4c4c4c">배송지</Text>
-                    <Text size="16px" weight="700" color="#4c4c4c">부산시 북구 해운대로 10번길 11</Text>
+                    <Text size="16px" weight="700" color="#4c4c4c">{user.address}</Text>
                     <Text color="#666" fontsize="14px">택배배송</Text>
                     <Button height="36px" fontsize="12px" margin="17px 0px 0px 0px"
                     border="1px solid #5f0080" font_color=" #5f0080" border_radius="3px"

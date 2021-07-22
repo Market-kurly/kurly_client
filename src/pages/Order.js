@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 const Order = (props) => {
   const [isFold, setIsfold] = useState(false);
   const cart = useSelector(state=> state.product.cart_list);
-  console.log(cart);
-
+  const user = useSelector(state=> state.user.user);
+  console.log(user);
   return (
     <React.Fragment>
       <Grid
@@ -60,16 +60,13 @@ const Order = (props) => {
         <Table>
           <Tr>
             <Th>보내는분</Th>
-            <Td>이현주</Td>
+            <Td>{user.nickname}</Td>
           </Tr>
           <Tr>
             <Th>휴대폰</Th>
-            <Td>01012345678</Td>
+            <Td>{user.phoneNumber}</Td>
           </Tr>
-          <Tr>
-            <Th>이메일</Th>
-            <Td>aaa@naver.com</Td>
-          </Tr>
+        
         </Table>
       </Grid>
 
@@ -85,11 +82,11 @@ const Order = (props) => {
         <Table>
           <Tr>
             <Th>배송지</Th>
-            <Td>부산 어쩌구로 어쩌구길 21</Td>
+            <Td>{user.address}</Td>
           </Tr>
           <Tr>
             <Th>상세정보</Th>
-            <Td>이현주, 01012345678</Td>
+            <Td>{user.nickname}, {user.phoneNumber}</Td>
           </Tr>
         </Table>
       </Grid>
