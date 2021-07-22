@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text, Button, Image } from "../elements";
 import OrderProduct from "../components/OrderProduct";
-import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
 
 const Order = (props) => {
   const [isFold, setIsfold] = useState(false);
+  const cart = useSelector(state=> state.product.cart_list);
+  console.log(cart);
 
   return (
     <React.Fragment>
@@ -39,11 +41,11 @@ const Order = (props) => {
 
       {isFold ? (
         <Ul>
-          <OrderProduct></OrderProduct>
-          <OrderProduct></OrderProduct>
+          <OrderProduct {...cart}></OrderProduct>
+          
         </Ul>
       ) : (
-        <OrderInfo> 친환경 햇 양파 1kg외 5개의 상품을 주문합니다.</OrderInfo>
+        <OrderInfo>{cart.productName} 외 0개의 상품을 주문합니다.</OrderInfo>
       )}
 
       <Grid

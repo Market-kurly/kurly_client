@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 
 const Delivery = (props) =>{
+    const product_id = props.id;
     const {purchase, price} = props;
 
     const productPrice = purchase * price;
@@ -51,7 +52,7 @@ const Delivery = (props) =>{
                     font_color="white" background_color="#5f0080"
                     fontsize="16px"
                     _onClick={()=>{
-                        history.push('/order')
+                        history.push(`/order/${product_id}`)
                     }}
                     >주문하기</Button>
                 </Grid>

@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { Image } from "../elements";
 
 const OrderProduct = (props) =>{
+    const cart = props;
     return(
         <React.Fragment>
             <Li>
                 <Thumb>
-                    <Image width="60px" heieght="78px" src="https://img-cf.kurly.com/shop/data/goods/1623996387153i0.jpg"></Image>
+                    <Image width="60px" heieght="78px" src={cart.productImg}></Image>
                 </Thumb>
-                <Name>친환경 햇 양파 1kg</Name>
-                <EA>20개 </EA>
-                <Price>39,460원</Price>
+                <Name>{cart.productName}</Name>
+                <EA>{cart.purchase}개 </EA>
+                <Price>{cart.price * cart.purchase}원</Price>
             </Li>
             
 
