@@ -153,7 +153,7 @@ const Order = (props) => {
                 width="22px"
                 src="https://hyunjung.s3.ap-northeast-2.amazonaws.com/pngegg+(1).png"
               ></Image>
-              <A href="https://github.com/yanghyunjung">
+              <A href="https://github.com/yanghyunjung" target="_blank">
                 프론트엔드 - 양현정 Github
               </A>
             </Td>
@@ -164,7 +164,7 @@ const Order = (props) => {
                 width="22px"
                 src="https://hyunjung.s3.ap-northeast-2.amazonaws.com/pngegg+(1).png"
               ></Image>
-              <A href="https://github.com/leehyeonj">
+              <A href="https://github.com/leehyeonj" target="_blank">
                 프론트엔드 - 이현주 Github
               </A>
             </Td>
@@ -175,7 +175,9 @@ const Order = (props) => {
                 width="22px"
                 src="https://hyunjung.s3.ap-northeast-2.amazonaws.com/pngegg+(1).png"
               ></Image>
-              <A href="https://github.com/fitChan">백엔드 - 성찬우 Github</A>
+              <A href="https://github.com/fitChan" target="_blank">
+                백엔드 - 성찬우 Github
+              </A>
             </Td>
             <Td>
               <Image
@@ -184,7 +186,9 @@ const Order = (props) => {
                 width="22px"
                 src="https://hyunjung.s3.ap-northeast-2.amazonaws.com/pngegg+(1).png"
               ></Image>
-              <A href="https://github.com/taehyun9244">백엔드 - 남태현 Github</A>
+              <A href="https://github.com/taehyun9244" target="_blank">
+                백엔드 - 남태현 Github
+              </A>
             </Td>
           </Tr2>
         </Table>
@@ -205,8 +209,7 @@ const Order = (props) => {
           width="240px"
           height="56px"
           _onClick={() => {
-            window.location.href = 'https://github.com/Market-kurly';
-            // history.push("/");
+            window.location.href = "https://github.com/Market-kurly";
           }}
         >
           결제하기
