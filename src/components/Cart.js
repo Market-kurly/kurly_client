@@ -28,15 +28,15 @@ const Cart = (props) =>{
                 </Grid>
                 {
                     fold && 
-                    <Grid alignitem="center" width="742px" display="flex" height="128px"  >
+                    <Grid alignitem="center" width="950px" display="flex" height="128px"  >
                      
                             <BtnCheck onClick={()=>{
                                 setIsCheck(!ischeck);
                             }} ischeck={ischeck}></BtnCheck>
-                            <Image margin="25px 0px"width="60px" height="78px" src={productImg}></Image>
-                            <Text margin="0px 250px 0px 20px"lineHeight="128px"size="16px"weight="700">{productName}</Text>
+                            <Image margin="25px 0px"width="100px" height="100px" src={productImg}></Image>
+                            <Text margin="0px 150px 0px 20px"lineHeight="128px"size="16px"weight="700"width="150px">{productName}</Text>
                             <CountNum num ={purchase} setNum={setPurchaseNum}></CountNum>
-                            <Text margin="0px 50px"size="16px" weight="bold" lineHeight="128px">{totalPrice}원</Text>
+                            <Text margin="0px 38px"size="16px" weight="bold" lineHeight="128px">{totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Text>
                             <BtnDelete></BtnDelete>
 
                        

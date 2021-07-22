@@ -8,11 +8,11 @@ const OrderProduct = (props) =>{
         <React.Fragment>
             <Li>
                 <Thumb>
-                    <Image width="60px" heieght="78px" src={cart.productImg}></Image>
+                    <Image width="68px" heieght="68px" src={cart.productImg}></Image>
                 </Thumb>
                 <Name>{cart.productName}</Name>
                 <EA>{cart.purchase}개 </EA>
-                <Price>{cart.price * cart.purchase}원</Price>
+                <Price>{(cart.price * cart.purchase).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Price>
             </Li>
             
 
@@ -71,7 +71,8 @@ font-weight: 700;
 
 const Price = styled.div`
 display: table;
-padding-top: 52px;
+padding-top: 50px;
+margin-top: 4px;
     float: right;
     width: 120px;
     height: 100%;
