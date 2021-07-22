@@ -1,8 +1,14 @@
 import React from "react";
 import { Grid, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as productActions } from "../redux/modules/product";
 
 const Delivery = (props) =>{
+    const {purchase, price} = props;
+
+    const productPrice = purchase * price;
+    const totalPrice = productPrice + 2500;
     return(
         <React.Fragment>
             <Grid width="284px"  margin="70px 20px">
@@ -20,15 +26,15 @@ const Delivery = (props) =>{
                 >
                     <Grid display="flex"  padding="9px 0px 0px" justify="space-between">
                         <Text size="16px" weight="700" color="#4c4c4c">상품금액</Text>
-                        <Text size="16px" weight="700" color="#4c4c4c">41,600원</Text>
+                        <Text size="16px" weight="700" color="#4c4c4c">{productPrice}원</Text>
                     </Grid>
                     <Grid display="flex" padding="9px 0px 0px" justify="space-between">
                         <Text size="16px"weight="700"  color="#4c4c4c">상품할인금액</Text>
-                        <Text size="16px"weight="700"  color="#4c4c4c">-41,600원</Text>
+                        <Text size="16px"weight="700"  color="#4c4c4c">0원</Text>
                     </Grid>
                     <Grid display="flex"  padding="9px 0px" justify="space-between">
                         <Text size="16px"weight="700"  color="#4c4c4c">배송비</Text>
-                        <Text size="16px"weight="700"  color="#4c4c4c">+41,600원</Text>
+                        <Text size="16px"weight="700"  color="#4c4c4c">+2,500원</Text>
                     </Grid>
                    
                    <hr style={{border:"1px solid #f2f2f2"}}></hr>
@@ -37,7 +43,7 @@ const Delivery = (props) =>{
                     >
                     
                         <Text size="16px" lineHeight="1.8" weight="700"  color="#4c4c4c">결제예정금액</Text>
-                        <Text size="22px"weight="700"  color="#4c4c4c">29,250원</Text>
+                        <Text size="22px"weight="700"  color="#4c4c4c">{totalPrice}원</Text>
                     </Grid>
                 </Grid>
                 <Grid padding="20px 0px 0px">

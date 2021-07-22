@@ -50,28 +50,19 @@ const getOneProductSV = (id) =>{
 //카드에 담긴 아이템 불러오기
 const getCartSV = ()=>{
     return function(dispatch) {
-        instance.get('/mypage')
-        .then(res=>{
-            dispatch(getCart(res.data));
-        })
-        .catch(err=> console.log(err));
+      dispatch(getCart());
     }
 }
 
 //카트에 아이템 추가하기
-const addCartSV = (product) =>{
+const addCartSV = (product, purchase) =>{
     return function(dispatch, getState, {history}){
-        instance.post('/mypage',{
-            productId : product.productId,
-            purchase : product.purchase
-        })
-        .then((res) =>{
-            dispatch(addCart({...product, 
-                productImg : res.data.productId, 
-                productName : res.data.productName, 
-                price : res.data.price}))
-        })
-        .catch(err=> console.log("장바구니 추가 실패", err));
+
+        dispatch(addCart({...product, 
+            purchase: purchase
+        }));
+        console.log("카트 추가")
+        
     }
 }
 
@@ -111,7 +102,9 @@ export default handleActions (
         }),
         [ADD_CART] : (state, action) =>
         produce(state, (draft)=>{
-            draft.cart_list.cart.unshift(action.payload.product);
+           
+            draft.cart_list= action.payload.product;
+            console.log(draft.cart_list);
         }),
         [DELETE_CART] : (state, action) =>
         produce(state, (draft)=>{

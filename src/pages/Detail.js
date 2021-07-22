@@ -4,12 +4,14 @@ import { actionCreators as productActions } from "../redux/modules/product";
 import {Grid, Image, Text, Button} from "../elements"
 import CountNum from "../components/CountNum";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 const Detail = (props) =>{
     
     const dispatch = useDispatch();
     const product_id = props.match.params.id;
     const product = useSelector(state=> state.product.product);
+    
 
     const [purchaseNum, setPurchaseNum] = React.useState(1);
     const [popup, setPopup] = React.useState(false);
@@ -17,11 +19,13 @@ const Detail = (props) =>{
         dispatch(productActions.getOneProductSV(product_id));
     },[]);
 
+    const addCart = (product, purchaseNum)=>{
+        dispatch(productActions.addCartSV(product,purchaseNum ));
+    }
     
-
-    console.log(product);
     const {productImg,description,  productName, price, amount, unit, delivery, packing, expiryDate, country, information, keeping} = product;
     let totalPrice = price * purchaseNum;
+
     return (
         <React.Fragment>
 
@@ -104,9 +108,10 @@ const Detail = (props) =>{
                              border_radius="3px" 
                              border="0px"
                              _onClick={()=>{
-                                 setPopup(true);
-                                 setTimeout(function(){ setPopup(false); }, 1000);
-                               
+                                addCart(product, purchaseNum);
+                        
+                                history.push(`/cart/${product_id}`)
+                
                                
                              }}
                              >장바구니 담기</Button>

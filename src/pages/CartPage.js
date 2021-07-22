@@ -6,8 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 
 const CartPage = (props) =>{
+    const product_id = props.match.params.id;
+    const dispatch = useDispatch();
+    const cart = useSelector(state=> state.product.cart_list);
+    console.log(cart);
 
-   
     return(
         <React.Fragment>
             <Grid width="1050px" margin="0 auto"  >
@@ -16,8 +19,8 @@ const CartPage = (props) =>{
                    
                 </Grid>
                 <Grid display="flex">
-                <CartList></CartList>
-                <Delivery></Delivery>
+                <CartList {...cart} id={product_id}></CartList>
+                <Delivery  {...cart}  id={product_id} ></Delivery>
                 </Grid>
             
             </Grid>

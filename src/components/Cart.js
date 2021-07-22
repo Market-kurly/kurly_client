@@ -2,14 +2,16 @@ import React from "react";
 import { Grid, Input, Button, Image , Text} from "../elements";
 import CountNum from "./CountNum";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 const Cart = (props) =>{
+    const dispatch= useDispatch();
     const [purchaseNum, setPurchaseNum] = React.useState(1);
     const [fold, setFold] = React.useState(true);
     const [ischeck, setIsCheck] = React.useState(true);
-
+   
     const {productImg, productName, price, purchase, keeping} = props;
-    let totalPrice= price * purchaseNum ; 
+    let totalPrice= price * purchase ; 
     // 숫자가 올라갈때 purchase도 바껴야함, 이것은 주문하기를 눌렀을때 해당 장바구니의 숫자를 수정해야하는 것
     // x를 눌렀을때는 장바구니내역 하나가 삭제되어야함
 
@@ -33,7 +35,7 @@ const Cart = (props) =>{
                             }} ischeck={ischeck}></BtnCheck>
                             <Image margin="25px 0px"width="60px" height="78px" src={productImg}></Image>
                             <Text margin="0px 250px 0px 20px"lineHeight="128px"size="16px"weight="700">{productName}</Text>
-                            <CountNum num ={purchaseNum} setNum={setPurchaseNum}></CountNum>
+                            <CountNum num ={purchase} setNum={setPurchaseNum}></CountNum>
                             <Text margin="0px 50px"size="16px" weight="bold" lineHeight="128px">{totalPrice}원</Text>
                             <BtnDelete></BtnDelete>
 

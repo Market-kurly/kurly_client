@@ -1,4 +1,4 @@
-// <<<<<<< HEAD
+
 const getLocal = (name) => {
     localStorage.getItem(`${name}`);
 }
@@ -12,7 +12,7 @@ const deleteLocal = (name) => {
 }
 
 export {getLocal, setLocal, deleteLocal};
-// =======
+
 const getCookie =(name)=>{
     let value = "; "+document.cookie;
 

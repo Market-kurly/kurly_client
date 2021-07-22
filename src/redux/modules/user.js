@@ -5,10 +5,10 @@ import jwt_decode from "jwt-decode";
 import {setCookie} from "../../shared/Cookie";
 
 const SET_USER = "SET_USER";
-const LOG_OUT = "LOG_OUT";
+
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
-const logOut = createAction(LOG_OUT, (user) => ({ user }));
+
 
 const initialState = {
   user: [],
@@ -83,27 +83,7 @@ const loginAPI = (id, pw) => {
           userName : decoded.sub
         }))
         history.push('/')
-        //성공시 토큰, 유저 정보 저장
 
-
-
-          // console.log(result.headers.get("Authorization"))
-          // console.log(result.headers.get("userInfo"))
-          // let token = result.headers.get("Authorization");
-          // let userInfo = result.headers.get("userInfo");
-          // userInfo = JSON.parse(userInfo);
-          // userInfo.name = decodeURI(atob(userInfo.name));
-          // userInfo.address = decodeURI(atob(userInfo.address));
-          // localStorage.setItem("token", token);
-          // localStorage.setItem("userInfo", JSON.stringify(userInfo));
-          // dispatch(
-          //   setUser({
-          //     uid: userInfo.uid,
-          //     name: userInfo.name,
-          //     address: userInfo.address.split("+").join(" "),
-          //   })
-          // );
-          // history.push("/");
         
       })
       .catch((error) => {
@@ -127,32 +107,6 @@ const loginCheck = ()=>{
   }
 }
 
-// function logout() {
-//   fetch("http://3.35.219.219/api/carts/products", {
-//     method: "PUT",
-//     headers: {
-//       Bearer: localStorage.getItem("Bearer"),
-//       // 저희 조 백엔드 분들과 정한 토큰 이름입니다! fetch의 headers에 넣어서 보내기로 해서,
-//       // 로그인시 받은 토큰을 서버로 보내 사용자 인증을 합니다!
-//       "Content-Type": "application/json",
-//       // 저희가 보내는 정보들의 타입은 json타입이라는 함수입니다.
-//     },
-//     body: localStorage.getItem("cart"),
-//     // 로컬 스토리지에 저장되어 있는 cart라는 토큰값을 서버로 보내고, 서버에서는 그 값을 통해
-//     // 장바구니 DB의 값을 수정합니다.
-//   }).then((res) => console.log(res));
-//   localStorage.clear();
-//   // 로그아웃 이후 로컬스토리지의 모든 토큰들을 삭제하여, 장바구니 DB와 로컬스토리지의 값이 다르지 않도록 하였습니다.
-//   history.replace("/");
-// }
-const logout = () => {
-  return function (dispatch, getState, { history }) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userInfo");
-    dispatch(logOut());
-    history.replace("/");
-  };
-};
 
 
 export default handleActions(
@@ -162,11 +116,6 @@ export default handleActions(
         draft.user = action.payload.user;
         draft.is_login = true;
       }),
-    [LOG_OUT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.user = null;
-        draft.is_login = false;
-      }),
   },
   initialState
 );
@@ -174,7 +123,6 @@ export default handleActions(
 const actionCreators = {
   signupAPI,
   loginAPI,
-  logout,
   idCheck,
   loginCheck
 };

@@ -31,10 +31,9 @@ function App() {
         <Route path="/detail/:id" exact component={Detail}></Route>
         <Route path="/pages/login" component={Login} />
         <Route path="/pages/signup" component={Signup} />
-        <Route path="/cart" exact component={CartPage} />
         <Route path="/order" exact component={Order}></Route>
         <Route path="/search/:word" exact component={SearchItem}></Route>
-       
+        <Route path="/cart/:id" exact component={CartPage} />
         
 
       </ConnectedRouter>
