@@ -14,8 +14,8 @@ http://kurlymarket.shop/
 
 ## 2. 사용 기술
 `Front-end`
--  React
-- javascript
+-  React, Javascript, Redux
+-  Material-UI, Styled-Components
 
 
 `Back-end`
@@ -30,8 +30,6 @@ http://kurlymarket.shop/
 <br>
 
 ## 3. 실행화면
-
-<img src="">
 
 자세한 영상 : https://www.youtube.com/watch?v=b9Z7gqWzyq8
 
